@@ -24,7 +24,7 @@ public class Test {
 //    	this.numberOfTests
     	
     	int foo = 1123;
-    	System.out.println(Person.numberOfPersons);
+//    	System.out.println(Person.numberOfPersons);
     	System.out.println(foo);
     	String[ ] myStrings = {
     			"One",
@@ -46,7 +46,7 @@ public class Test {
         // Don't use instance variables to reference static fields or methods
 //        System.out.println(emp.numberOfPersons);
         
-        System.out.println(Person.numberOfPersons);
+//        System.out.println(Person.numberOfPersons);
         
         
         System.out.println(pers);

@@ -2,87 +2,68 @@ package trivera.core.employee;
 
 /**
  * <p>
- * This component and its source code representation are copyright protected and
- * proprietary to Trivera Technologies, LLC, Worldwide D/B/A Trivera
- * Technologies
+ * This component and its source code representation are copyright protected
+ * and proprietary to Trivera Technologies, LLC, Worldwide D/B/A Trivera Technologies
  *
- * This component and source code may be used for instructional and evaluation
- * purposes only. No part of this component or its source code may be sold,
- * transferred, or publicly posted, nor may it be used in a commercial or
- * production environment, without the express written consent of Trivera
- * Technologies, LLC
+ * This component and source code may be used for instructional and
+ * evaluation purposes only. No part of this component or its source code
+ * may be sold, transferred, or publicly posted, nor may it be used in a
+ * commercial or production environment, without the express written consent
+ * of Trivera Technologies, LLC
  *
- * Copyright (c) 2017 Trivera Technologies, LLC. http://www.triveratech.com
+ * Copyright (c) 2017 Trivera Technologies, LLC.
+ * http://www.triveratech.com   
  * </p>
- * 
  * @author Trivera Technologies Tech Team.
  */
 
+
 public class Person {
-	public static int numberOfPersons = 0;
-	private static Person[] peeps = new Person[10];
+    // The name private instance field
+    String name;
 
-	private String name;
+    public Person() {
+    }
 
-	public Person() {
-		this.name = "Unknown";
-		addPeeps();
-	}
+    public Person(String name) {
+        super();
 
-	public Person(String name) {
-		this.name = name;
-		addPeeps();
-	}
+        // Calls the no-argument superclass constructor
 
-	public void addPeeps() {	// Initializer Block - used to give the same logic for all CTORs
-		// for (int index = 0; index < Person.peeps.length; index++) {
-		// Person p = Person.peeps[index];
-		boolean alreadyExists = false;
-		for (Person p : Person.peeps) {
-			if (p == null) { break; }
-			if (this.name.equals(p.name)) {
-				alreadyExists = true;
-				break;
-			}
-		}
-		if (!alreadyExists) {
-			Person.numberOfPersons++;
-		}
+        // Saves the name argument into the instance field
+        this.name = name;
 
-	}
+    }
 
-	// LAB HINT: Override the equals() method
-	// Left-Hand side is "this"
-	// Right hand side is "obj"
-	// harry1.equals(harry2)
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		if (obj instanceof Person) {
-			Person rhs = (Person) obj;
-			if (this.getName() == rhs.getName()) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		return super.equals(obj);
-	}
+    public boolean equals(Object other) {
 
-	// LAB HINT: Override the toString() method
-	@Override
-	public String toString() {
-		return "Person: " + this.getName();
-	}
+        // If the other object is not a Person, return false
+        if (!(other instanceof Person))
+            return false;
 
-	// LAB HINT: Write the get and set methods for the name instance variable
-	public String getName() {
-		return name;
-	}
+        // Cast the other reference into a Person
+        Person otherPerson = (Person) other;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+        // Get the name of the other Person
+        String otherName = otherPerson.getName();
+
+        // If the other name is not null and it is equal (case insensitive)
+        // to this Person's name, return true, otherwise return false
+        return otherName != null && otherName.equalsIgnoreCase(this.name);
+
+    }
+
+    public String toString() {
+        // return the name of the Person
+        return name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
 }

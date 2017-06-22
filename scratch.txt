@@ -266,6 +266,37 @@ https://www.javacodegeeks.com/2016/06/java-certification-cert-not-cert.html
 
 https://en.wikipedia.org/wiki/Oracle_Certification_Program
 https://upload.wikimedia.org/wikipedia/commons/3/33/Java_Certification_Path.gif
+
+
+abstract != concrete
+abstract class cannot be instantiated
+	(Must subclass to instantiate a subclass)
+If any method in any class is marked as abstract
+	the whole class MUST be marked abstract
+
+
+
+
+An interface is a pure abstract class
+	Only method signatures and CONSTANTS (static final)
+	Used for "plug and play"
+
+	Used in TDD - a service has an interface that implements
+	It's the contract between a service provider and service consumer
+
+	Code a web app to the interface
+		Create a "mock" or "stub" implementation of that interface
+		Develop against the Mock
+		Test the WebUI against the Mock
+	Code a service implementation of that interface (Mainframe/DB/2)
+		Mock gets replaced in production by the real service implementation
+	Later, create an alternative JEE Service implementation
+		If it implements the same interface, the WebUI shouldn't notice
+		or have to change to use the new "upgraded" JEE service.
+
+
+
+
 			
 			
 
