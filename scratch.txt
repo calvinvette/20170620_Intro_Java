@@ -154,6 +154,7 @@ Windows->Preferences
 Break + Lab 7 + Lab 8 until 11:25.
 
 
+https://github.com/calvinvette/20170620_Intro_Java
 
 
 
@@ -161,6 +162,112 @@ Break + Lab 7 + Lab 8 until 11:25.
 
 
 
+
+
+Encapsulation - protection/Data Hiding
+Inheritance - a class extends another class
+Overloading - 	
+	Operator - 5 + 5 (add), 5.0 + 5.0 (fpadd), "foo" + "bar" 
+	Method - multiple methods with same name and different signature
+		signature: number, order, and type of arguments
+		setDate(int month, int day, int year)
+		setDate(int month, int day) // assumes current year
+Constructors - Initializing methods, called after "new"
+Chaining Methods - one method calls another, typically in overloading
+	with CTORs, must be done on first line of code with this(...) or super(...)
+Overriding - replacing a parent (or super) method in your child/base class
+	Can also call super.method() in child to still invoke parent version too
+	e.g. Whale's breath checks for underwater-ness first, then calls super.breath()
+Polymorphism - Many forms
+	Overloading
+	Overriding
+	Inheritance
+	"Do the right thing based on context" - 
+	Cat knows that it's a cat even if you refer to it as a mammal
+
+	Mammal m = new Cat();
+	m.breath(); // generic mammalian method
+	if (m instanceof Cat) {
+		Cat c = (Cat) m;
+		c.meow(); // the c variable is of Cat type - it knows it can "meow"
+	} 
+
+	Upcasting - Cat extends Mammal - always safe to "generalize" a cat as a 
+		mammal
+	Downcasting - A given mammal may or may not be a Cat - check first with
+		instanceof before casting
+
+Exceptions - try/catch blocks
+	
+
+
+
+
+Package is a "namespace" + a directory structure
+CLASSPATH includes directories(or jar or zip files) that have the folder that
+	contains the namespace directory structure
+
+	src/com.trivera.example (package name == com.trivera.example)
+	src/	
+		com/
+			trivera/
+				example/
+					Vehicle.java
+					Vehicle.class	(compiled version)
+
+	Vehicle.java's first line of code is "package com.trivera.example;"
+
+	Make "src" an entry in our CLASSPATH
+
+	Eclipse compiles into a parallel directory structure bin/
+
+
+Access Modifiers:
+
+private - only accessible within this class
+(package) - default - accessible to anything within this package
+	(package = directory)
+protected - like package, but also accessible to derivatives
+	outside of the package
+public - any code can access this
+
+
+		com.trivera
+			Customer.java				MainApp.java
+			private int socialSecurityNumber
+			public int getSSN() {
+				// Authn & Authz to verify
+				// caller can see this!
+			}
+			setMaskingFilter(String filter) {
+				// take a string to mask
+				// the unsee-able portions of SSN
+				// Default to "*" blocking
+			}
+			protected setDefaultAuthMode(String authMode) {
+				// Set up authentication using authMode
+			}
+
+
+
+		com.jpmorgan/
+			MyApp.java				Customer.java
+								  extends
+								com.trivera.Customer
+									adds BankAccount
+	
+
+
+
+								
+Lunch + Lab 9 + Hackathon until 1:40
+
+https://www.javacodegeeks.com/2016/06/java-certification-cert-not-cert.html
+
+https://en.wikipedia.org/wiki/Oracle_Certification_Program
+https://upload.wikimedia.org/wikipedia/commons/3/33/Java_Certification_Path.gif
+			
+			
 
 
 
