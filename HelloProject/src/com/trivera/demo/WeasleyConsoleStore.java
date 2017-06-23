@@ -24,10 +24,8 @@ public class WeasleyConsoleStore {
 		if (conn != null) {
 			try {
 				Statement stmt = conn.createStatement();
-				stmt.executeUpdate("insert into customer (firstName, lastName, phoneNumber, email) values (" 
-						+ "'" + c.getFirstName() + "', '" 
-						+ c.getLastName() + "', '" 
-						+ c.getPhoneNumber() + "', '"
+				stmt.executeUpdate("insert into customer (firstName, lastName, phoneNumber, email) values (" + "'"
+						+ c.getFirstName() + "', '" + c.getLastName() + "', '" + c.getPhoneNumber() + "', '"
 						+ c.getEmail() + "')");
 				// The "Generated Keys" has the auto-incremented customerId in
 				// it. Extract it out and update the
@@ -84,24 +82,24 @@ public class WeasleyConsoleStore {
 			System.out.println(customer);
 		}
 	}
-	
+
 	private static void dumpToFile() {
 		try {
 			PrintWriter out = new PrintWriter(new FileWriter("customers.txt"));
-			for(Customer c : customerMap.values()) {
-//				out.write(c.getCustomerId().toString());
-//				out.write('\t');
-//				out.write(c.getFirstName());
-//				out.write('\t');
-//				out.write(c.getLastName());
-//				out.write('\t');
-//				out.write(c.getPhoneNumber());
-//				out.write('\t');
-//				out.write(c.getEmail());
-//				out.write('\n');
-				out.println(c.getCustomerId() + "\t" + c.getFirstName() + "\t"
-						+ c.getLastName() + "\t" + c.getPhoneNumber() + "\t" + c.getEmail());
-//			out.flush();
+			for (Customer c : customerMap.values()) {
+				// out.write(c.getCustomerId().toString());
+				// out.write('\t');
+				// out.write(c.getFirstName());
+				// out.write('\t');
+				// out.write(c.getLastName());
+				// out.write('\t');
+				// out.write(c.getPhoneNumber());
+				// out.write('\t');
+				// out.write(c.getEmail());
+				// out.write('\n');
+				out.println(c.getCustomerId() + "\t" + c.getFirstName() + "\t" + c.getLastName() + "\t"
+						+ c.getPhoneNumber() + "\t" + c.getEmail());
+				// out.flush();
 			}
 			out.flush();
 			out.close();
@@ -109,27 +107,37 @@ public class WeasleyConsoleStore {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	private static void readDumpFile() {
 		int currentLineNum = 0;
 		try {
 			BufferedReader fileIn = new BufferedReader(new FileReader("customers.txt"));
 			String line = null;
 			while ((line = fileIn.readLine()) != null) {
-//				System.out.println(line);
+				// System.out.println(line);
 				currentLineNum++;
 				String[] fields = line.split("\t");
-				Customer c = new Customer(
-						new Long(fields[0]), // It's a String, so we convert customerId to a number
-						fields[1], // firstName
-						fields[2], // lastName
-						fields[3], // phoneNumber
-						fields[4] // email
-						);
-				customerMap.put(fields[2] + "," + fields[1], c);
+				try {
+					Customer c = new Customer(new Long(fields[0]), // It's a
+																	// String,
+																	// so we
+																	// convert
+																	// customerId
+																	// to a
+																	// number
+							fields[1], // firstName
+							fields[2], // lastName
+							fields[3], // phoneNumber
+							fields[4] // email
+					);
+					customerMap.put(fields[2] + "," + fields[1], c);
+				} catch (Exception e) {
+					System.out.println("Error: " + e.getMessage() + " on customers.txt line#" + currentLineNum);
+				}
 			}
+			System.out.println("Read " + currentLineNum + " customers");
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -146,20 +154,25 @@ public class WeasleyConsoleStore {
 			// DriverManager.getConnection("jdbc:derby://localhost:1527/weasley",
 			// "calvin", "password");
 			// Need to launch the DB, create the DB and table first.
-			conn = DriverManager.getConnection("jdbc:derby://localhost:1527/weasley;create=true", "calvin", "password");
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Customer");
-			while (rs.next()) {
-				Long customerId = rs.getLong("customerId");
-				String firstName = rs.getString("firstName");
-				String lastName = rs.getString("lastName");
-				String phoneNumber = rs.getString("phoneNumber");
-				String email = rs.getString("email");
-				customerMap.put(lastName + "," + firstName,
-						new Customer(customerId, firstName, lastName, phoneNumber, email));
+			try {
+				conn = DriverManager.getConnection("jdbc:derby://localhost:1527/weasley;create=true", "calvin",
+						"password");
+				stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT * FROM Customer");
+				while (rs.next()) {
+					Long customerId = rs.getLong("customerId");
+					String firstName = rs.getString("firstName");
+					String lastName = rs.getString("lastName");
+					String phoneNumber = rs.getString("phoneNumber");
+					String email = rs.getString("email");
+					customerMap.put(lastName + "," + firstName,
+							new Customer(customerId, firstName, lastName, phoneNumber, email));
+				}
+				rs.close();
+			} catch (SQLException e) {
+				System.out.println("Database can't connect - read and save to files locally instead!");
 			}
-			rs.close();
-			
+
 			boolean done = false;
 			input = new BufferedReader(new InputStreamReader(System.in));
 			String line = null;
@@ -212,21 +225,21 @@ public class WeasleyConsoleStore {
 				case "read":
 					readDumpFile();
 					break;
-				
+
 				default:
 					printHelp();
 				}
 			}
 			System.out.println("Bye!");
-		} catch (SQLException e1) {
-			// e1.printStackTrace();
-			switch (e1.getErrorCode()) {
-			case 40000:
-				System.out.println("Database Does not exist. Need to create!");
-			default:
-				System.out.println("Unknown Error Code: " + e1.getErrorCode());
-				System.out.println(e1.getMessage());
-			}
+//		} catch (SQLException e1) {
+//			// e1.printStackTrace();
+//			switch (e1.getErrorCode()) {
+//			case 40000:
+//				System.out.println("Database Does not exist. Need to create!");
+//			default:
+//				System.out.println("Unknown Error Code: " + e1.getErrorCode());
+//				System.out.println(e1.getMessage());
+//			}
 		} finally {
 			if (stmt != null) {
 				try {
