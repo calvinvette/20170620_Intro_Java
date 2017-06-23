@@ -288,8 +288,50 @@ https://github.com/calvinvette/20170620_Intro_Java
 
 
 
+Collections (Hashtables, Vectors, LinkedLists, Sets, etc.)
+JDBC
+File I/O
+TDD
+
+Optional (Time Allowing)
+Threads
+MDE (Model-Driven Engineering) (JBoss Forge)
 
 
+
+Lists
+	Lists are great if you're modifying/re-sorting/adding/moving list items
+	Items are ordered and reference-able by index position
+	Arrays will be better if you're not
+	LinkedLists can be singly or doubly linked
+		(next pointer, previous pointer)
+		Re-orders are linear and don't impact performance
+	Vectors are thread-safe and use Arrays internally with System.arrayCopy
+		Think of it as a "growable array"
+		Re-orders/insertions won't be as good as LinkedLists
+		Better performance overall for reads
+		Can be performance-tweaked with capacity and increment hints
+	ArrayLists are the same as Vectors but without thread safety
+		When in doubt, use a Vector
+
+Maps
+	Also known as Hashtables, Dictionaries, or Associative Arrays
+	Key/Value pairs
+	Keys use their internal hashcode(), are simple, and typically
+		reconstructable from easily obtainable data (lastName,firstName)
+		Must be unique
+	TreeMap can be sorted with a Comparable or a Comparator
+
+Sets
+	Unique values guaranteed, uses hashcode() internally for the 
+		key of a manually managed hash map
+		No guaranteed ordering, no index position
+		Can be sorted using a TreeSet and a Comparable or a Comparator
+
+
+Break + Exercise 15 until 10:50
+
+I'll take questions on Exercise 14 or 16 after we come back as well.
 
 
 

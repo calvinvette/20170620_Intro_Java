@@ -23,4 +23,8 @@ public enum States {
 	public int getPopulation() {
 		return population;
 	}
+	@Override
+	public String toString() {
+		return this.name() + ": " + this.getStateName();
+	}
 }

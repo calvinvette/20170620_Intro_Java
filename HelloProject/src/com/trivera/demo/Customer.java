@@ -1,5 +1,6 @@
+package com.trivera.demo;
 
-public class Customer extends Object {
+public class Customer extends Object implements Comparable<Customer> {
 	private Long customerId = -1L;
 	private String firstName;
 	private String lastName;
@@ -92,6 +93,12 @@ public class Customer extends Object {
 	public String toString() {
 		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", phoneNumber=" + phoneNumber + ", email=" + email + "]";
+	}
+	
+	// Return -1, 0, or 1
+	@Override
+	public int compareTo(Customer o) {
+		return this.getLastName().toLowerCase().compareTo(o.getLastName().toLowerCase());
 	}
 
 }

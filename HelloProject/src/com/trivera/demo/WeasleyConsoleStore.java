@@ -1,3 +1,4 @@
+package com.trivera.demo;
 
 public class WeasleyConsoleStore {
 
