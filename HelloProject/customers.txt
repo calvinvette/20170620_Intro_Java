@@ -1,0 +1,7 @@
+6	Seamus	Finnegan	+44 0206-131-141	
+5	Dean	Thomas	+44 0206 131-5191	dean.thomas@hogwarts.ac.uk
+4	Neville	Longbottom	+44 0206 139-1591	neville.longbottom@hogwarts.ac.uk
+2	Ronald	Weasley	+44 0206 931-1341	ronald.weasley@hogwarts.ac.uk
+3	Hermione	Granger	+44 0206 931-1511	hermione.granger@hogwarts.ac.uk
+1	Harry	Potter	+44 0206 931-4141	harry.potter@hogwarts.ac.uk
+7	Ginny	Weasley	+44 0206-131-1591	ginny@harpis.co.uk

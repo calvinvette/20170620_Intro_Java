@@ -329,9 +329,78 @@ Sets
 		Can be sorted using a TreeSet and a Comparable or a Comparator
 
 
-Break + Exercise 15 until 10:50
+Common Mandatory (Checked) Exceptions:
 
-I'll take questions on Exercise 14 or 16 after we come back as well.
+	Exception
+	IOException
+		FileNotFound
+		EOFException
+	SQLException
+
+
+JDBC
+	CLI - Call-Level-Interface for Database Access based on ODBC
+	Set of 9-ish standard steps to connect, fire off queries, and process result sets
+
+	Use Factory Pattern to avoid hard-wiring a driver
+	Use user input, files, ResourceBundle to store conn info, user, password info
+		maybe even the SQL itself
+
+	Java Persistence Architecture builds on top of JDBC and does much of this for you.
+
+	Most of java.sql (JDBC package) are interfaces and abstract classes
+
+	//Connection conn = new OracleDBConnection(...)
+	// Make sure Oracle JDBC jar file is in my CLASSPATH
+	Connection conn = DriverManager.getConnection(jdbcUrl, user, password)
+	Statement stmt = conn.createStatement();
+	stmt.execute*
+		executeQuery(...) - for SELECT statements, returns a ResultSet
+		execute(...) - generic, can be used for anything
+		executeUpdate(...) - for INSERT, UPDATEs, DELETE - returns #rows affected
+		executeBatch(...) - for performance bulk queries
+
+	ResultSet rs = stmt.executeQuery("SELECT * FROM Customer WHERE ...");
+		rs may be 0 length
+		rs points a cursor to point BEFORE the first record
+	rs.next() - return a boolean true if there is at least one more record to process
+		moves cursor forward when called
+	while (rs.next()) {
+		
+	}
+
+	rs.get* functions pull out individual fields, arg is index position or field name
+		rs.getString(...)
+		rs.getLong(...)
+		rs.getDate(...)
+
+		rs.getString("firstName") or rs.getString(1) will get first column
+
+		ANSI SQL counts from 1, NOT 0
+
+		Typically we'll convert a row into a business object like Customer
+		add it to a local map or list or save in a file.
+
+
+	Close rs, stmt, conn
+	Try/Catch-athon all over the place
+
+
+File I/O
+
+System.out.println
+System.out = console output
+System.err = console error output
+System.in = keyboard input
+
+FileWriter - open a (2-byte) character-based file for writing
+FileOutputStream - open a binary file for writing
+
+FileReader
+FileInputStream
+
+Exercise 21 + break until 3:15
+
 
 
 
