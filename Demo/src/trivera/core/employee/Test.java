@@ -40,9 +40,12 @@ public class Test {
     	
     	
         Person pers = new Person("Harry Potter");
-        Employee manager = new Employee("Hermione Granger", 1234, null);
-        Employee emp = new Employee("Harry Potter", 4321, manager);
-
+//        Employee manager = new Employee("Hermione Granger", 1234, null);
+//        Employee emp = new Employee("Harry Potter", 4321, manager);
+        Employee manager = new SalesEmployee("Hermione Granger", 1234);
+        Employee emp = new HourlyEmployee("Harry Potter", 4321);
+        emp.setManager(manager);
+        
         // Don't use instance variables to reference static fields or methods
 //        System.out.println(emp.numberOfPersons);
         

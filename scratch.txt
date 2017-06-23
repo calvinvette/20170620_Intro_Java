@@ -6,7 +6,7 @@ harryBDay.setMonth(7); // 0-based - 6 for July
 harryBDay.setDate(31); // 1-based
 harryBDay.setYear(1980); // 1900-based
 
-timestamp = # milliseconds since Epoch
+timestamp = # milliseconds since Epoch (Jan 1, 1970@Midnight UTC/GMT)
 public int getMonth() {
 	return 0-11 based on calculation of timestamp
 }
@@ -41,15 +41,7 @@ orderDate = Tue Jun 20 16:17:25 EDT 2017,
 shipDate = Wed Jun 21 16:17:25 EDT 2017, 
 birthDate=null]
 
-
-
 c:\Courses\tt2104\StudentWork
-
-
-
-PDF Password:
-		jpmc-tt2104
-
 
 
 Do the Demos\ColorPicker
@@ -60,48 +52,7 @@ Do the Demos\ColorPicker
 
 Eclipse is in C:\tools\Eclipse\Eclipse.exe
 
-
-
-
-
-
-
-
-c
-c = c + 1
-=~ c++
-
-int x
-
-
 Looping Lab + quick break until 2:55
-
-
-String's length() is a method
-Array's length is a property
-length will always give you a 1-s based number
-Items in the array are all 0-based.
-
-
-// Create an array to hold 10 customers
-// Arrays are FIXED in length (but not content)
-Customer[] customers = new Customer[10];
-
-// Customers will be numbered 0-9.
-// customers.length will be 10.
-
-for (int i = 0; i < customers.length; i++) {
-	customers[i] = new Customer(...);
-}
-
-customers[customers.length - 1]
-
-
-Window -> Preferences -> Java -> Editor -> Templates
-	sysout -> Edit -> change name to "sop"
-	The popup asks if you want a copy - say yes.
-	OK to exit.
-
 
 Customer [customerId=-1, firstName=Harry, lastName=Potter, email=harry.potter@hogwarts.ac.uk, phoneNumber=+44 0206 331-4141, homeAddress=Address [line1=#4 Privet Drive, line2=Cupboard Under the Stair, city=Little Whinging, state=Surrey, postalCode=null, country=England], workAddress=null, birthDate=Tue Jul 01 15:09:07 EDT 1980, 
 orders=[null, null, null, null, null, null, null, null, null, null]]
@@ -118,186 +69,21 @@ orders=[Order [orderId=-1, status=Ordered, orderDate=Wed Jun 21 15:10:02 EDT 201
 Order [orderId=-1, status=Ordered, orderDate=Wed Jun 21 15:10:02 EDT 2017, shipDate=Thu Jun 22 15:10:02 EDT 2017, orderItems=1 Fanged Frisbee], 
 	null, null, null, null, null, null, null, null]]
 
-
-
-
 Customer [customerId=-1, firstName=Fred, lastName=Weasley, email=null, phoneNumber=null, homeAddress=null, workAddress=null, birthDate=null, orders=[null, null, null, null, null, null, null, null, null, null]]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Lab 4 or 5 plus Lab 6 until 8:55 tomorrow.
 You choose how/when/if you're doing these labs.
 
 
-
-Windows->Preferences
-	General->Appearances->Colors and Fonts->Basic->Text Font
-
-
 Break + Lab 7 + Lab 8 until 11:25.
-
-
-https://github.com/calvinvette/20170620_Intro_Java
-
-
-
-
-
-
-
-
-
-Encapsulation - protection/Data Hiding
-Inheritance - a class extends another class
-Overloading - 	
-	Operator - 5 + 5 (add), 5.0 + 5.0 (fpadd), "foo" + "bar" 
-	Method - multiple methods with same name and different signature
-		signature: number, order, and type of arguments
-		setDate(int month, int day, int year)
-		setDate(int month, int day) // assumes current year
-Constructors - Initializing methods, called after "new"
-Chaining Methods - one method calls another, typically in overloading
-	with CTORs, must be done on first line of code with this(...) or super(...)
-Overriding - replacing a parent (or super) method in your child/base class
-	Can also call super.method() in child to still invoke parent version too
-	e.g. Whale's breath checks for underwater-ness first, then calls super.breath()
-Polymorphism - Many forms
-	Overloading
-	Overriding
-	Inheritance
-	"Do the right thing based on context" - 
-	Cat knows that it's a cat even if you refer to it as a mammal
-
-	Mammal m = new Cat();
-	m.breath(); // generic mammalian method
-	if (m instanceof Cat) {
-		Cat c = (Cat) m;
-		c.meow(); // the c variable is of Cat type - it knows it can "meow"
-	} 
-
-	Upcasting - Cat extends Mammal - always safe to "generalize" a cat as a 
-		mammal
-	Downcasting - A given mammal may or may not be a Cat - check first with
-		instanceof before casting
-
-Exceptions - try/catch blocks
-	
-
-
-
-
-Package is a "namespace" + a directory structure
-CLASSPATH includes directories(or jar or zip files) that have the folder that
-	contains the namespace directory structure
-
-	src/com.trivera.example (package name == com.trivera.example)
-	src/	
-		com/
-			trivera/
-				example/
-					Vehicle.java
-					Vehicle.class	(compiled version)
-
-	Vehicle.java's first line of code is "package com.trivera.example;"
-
-	Make "src" an entry in our CLASSPATH
-
-	Eclipse compiles into a parallel directory structure bin/
-
-
-Access Modifiers:
-
-private - only accessible within this class
-(package) - default - accessible to anything within this package
-	(package = directory)
-protected - like package, but also accessible to derivatives
-	outside of the package
-public - any code can access this
-
-
-		com.trivera
-			Customer.java				MainApp.java
-			private int socialSecurityNumber
-			public int getSSN() {
-				// Authn & Authz to verify
-				// caller can see this!
-			}
-			setMaskingFilter(String filter) {
-				// take a string to mask
-				// the unsee-able portions of SSN
-				// Default to "*" blocking
-			}
-			protected setDefaultAuthMode(String authMode) {
-				// Set up authentication using authMode
-			}
-
-
-
-		com.jpmorgan/
-			MyApp.java				Customer.java
-								  extends
-								com.trivera.Customer
-									adds BankAccount
-	
-
-
-
 								
 Lunch + Lab 9 + Hackathon until 1:40
 
-https://www.javacodegeeks.com/2016/06/java-certification-cert-not-cert.html
 
-https://en.wikipedia.org/wiki/Oracle_Certification_Program
-https://upload.wikimedia.org/wikipedia/commons/3/33/Java_Certification_Path.gif
+Lab 10 until 2:35
 
-
-abstract != concrete
-abstract class cannot be instantiated
-	(Must subclass to instantiate a subclass)
-If any method in any class is marked as abstract
-	the whole class MUST be marked abstract
-
-
-
-
-An interface is a pure abstract class
-	Only method signatures and CONSTANTS (static final)
-	Used for "plug and play"
-
-	Used in TDD - a service has an interface that implements
-	It's the contract between a service provider and service consumer
-
-	Code a web app to the interface
-		Create a "mock" or "stub" implementation of that interface
-		Develop against the Mock
-		Test the WebUI against the Mock
-	Code a service implementation of that interface (Mainframe/DB/2)
-		Mock gets replaced in production by the real service implementation
-	Later, create an alternative JEE Service implementation
-		If it implements the same interface, the WebUI shouldn't notice
-		or have to change to use the new "upgraded" JEE service.
-
-
-
-
-			
+Break + Lab 11 (Exceptions) until 3:45			
 			
 
 
