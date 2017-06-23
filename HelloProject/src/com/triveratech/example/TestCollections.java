@@ -1,12 +1,9 @@
 package com.triveratech.example;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.Vector;
 
 import com.trivera.demo.Customer;
@@ -94,42 +91,42 @@ public class TestCollections {
 		// hashcode() that is regenerateable from information on hand
 		// Harry won't forget his name, so our key will be a String of
 		// "lastName,firstName"
-		Map<String, Customer> customerDict = new TreeMap<>(); 
+		Map<String, Customer> customerHash = new Hashtable<>(); 
 		// or new HashMap<>() (no thread safety) or TreeMap<>() if we're sorting
-		Customer h =  new Customer("Harasdfasdfasdry", "Potter", "+44 0206-145-1351", "harry@hogwarts.ac.uk");
-		customerDict.put("Potter,Harry", h);
-		customerDict.put("harry.potter@hogwarts.ac.uk", h);
-		customerDict.put("Weasley,Ronald", new Customer("Ronald", "Weasley", "+44 0206-145-1351", "harry@hogwarts.ac.uk"));
-		customerDict.put("Granger,Hermione", new Customer("sdfasdfg", "Granger", "+44 0206-145-1351", "harry@hogwarts.ac.uk"));
+		Customer h =  new Customer("Harry", "Potter", "+44 0206-145-1351", "harry@hogwarts.ac.uk");
+		customerHash.put("Potter,Harry", h);
+		customerHash.put("harry.potter@hogwarts.ac.uk", h);
+		customerHash.put("Weasley,Ronald", new Customer("Ronald", "Weasley", "+44 0206-145-1351", "harry@hogwarts.ac.uk"));
+		customerHash.put("Granger,Hermione", new Customer("sdfasdfg", "Granger", "+44 0206-145-1351", "harry@hogwarts.ac.uk"));
 		
 		System.out.println();
-		Customer harryFromDict = customerDict.get("Potter,Harry");
+		Customer harryFromDict = customerHash.get("Potter,Harry");
 		System.out.println("Harry From Dict: " + harryFromDict);
 		
 		System.out.println();
 		System.out.println("CustDict by values");
-		for (Customer c : customerDict.values()) {
+		for (Customer c : customerHash.values()) {
 			System.out.println(c);
 		}
 		
 		System.out.println();
 		System.out.println("CustDict by key");
-		for (String key : customerDict.keySet()) {
-			System.out.println(key + "=" + customerDict.get(key));
+		for (String key : customerHash.keySet()) {
+			System.out.println(key + "=" + customerHash.get(key));
 		}
 		
 		System.out.println();
 		System.out.println("CustDict by Map.Entry");
-		for (Map.Entry<String, Customer> entry : customerDict.entrySet()) {
+		for (Map.Entry<String, Customer> entry : customerHash.entrySet()) {
 			System.out.println("key = " + entry.getKey() + "; value = " + entry.getValue());
 		}
 		
 		// Natural Sort order (Comparable/compare method in data class)
 		// External Comparator
-		Customer removed = customerDict.remove("Weasley,Ronald"); // Remove Ron from the Map
+		Customer removed = customerHash.remove("Weasley,Ronald"); // Remove Ron from the Map
 		System.out.println(removed);
 		System.out.println();
-		System.out.println(customerDict);
+		System.out.println(customerHash);
 		
 		
 	}
