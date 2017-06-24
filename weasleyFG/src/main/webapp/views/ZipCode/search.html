@@ -1,0 +1,111 @@
+<div class="form-horizontal">
+    <h3>Create a new ZipCode</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/ZipCodes/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for ZipCodes</h3>
+    <form id="ZipCodeSearch" class="form-horizontal">
+        
+    <div class="form-group">
+        <label for="zip" class="col-sm-2 control-label">Zip</label>
+        <div class="col-sm-10">
+            <input id="zip" name="zip" class="form-control" type="text" ng-model="search.zip" placeholder="Enter the ZipCode Zip"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="city" class="col-sm-2 control-label">City</label>
+        <div class="col-sm-10">
+            <input id="city" name="city" class="form-control" type="text" ng-model="search.city" placeholder="Enter the ZipCode City"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="state" class="col-sm-2 control-label">State</label>
+        <div class="col-sm-10">
+            <input id="state" name="state" class="form-control" type="text" ng-model="search.state" placeholder="Enter the ZipCode State"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="latitude" class="col-sm-2 control-label">Latitude</label>
+        <div class="col-sm-10">
+            <input id="latitude" name="latitude" class="form-control" type="text" ng-model="search.latitude" placeholder="Enter the ZipCode Latitude"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="longitude" class="col-sm-2 control-label">Longitude</label>
+        <div class="col-sm-10">
+            <input id="longitude" name="longitude" class="form-control" type="text" ng-model="search.longitude" placeholder="Enter the ZipCode Longitude"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="timeZone" class="col-sm-2 control-label">Time Zone</label>
+        <div class="col-sm-10">
+            <input id="timeZone" name="timeZone" class="form-control" type="text" ng-model="search.timeZone" placeholder="Enter the ZipCode Time Zone"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="observesDst" class="col-sm-2 control-label">Observes Dst</label>
+        <div class="col-sm-10">
+            <input id="observesDst" name="observesDst" class="form-control" type="text" ng-model="search.observesDst" placeholder="Enter the ZipCode Observes Dst"></input>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Zip</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Latitude</th>
+                    <th>Longitude</th>
+                    <th>Time Zone</th>
+                    <th>Observes Dst</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <td><a href="#/ZipCodes/edit/{{result.zipCodeId}}">{{result.zip}}</a></td>
+                    <td><a href="#/ZipCodes/edit/{{result.zipCodeId}}">{{result.city}}</a></td>
+                    <td><a href="#/ZipCodes/edit/{{result.zipCodeId}}">{{result.state}}</a></td>
+                    <td><a href="#/ZipCodes/edit/{{result.zipCodeId}}">{{result.latitude}}</a></td>
+                    <td><a href="#/ZipCodes/edit/{{result.zipCodeId}}">{{result.longitude}}</a></td>
+                    <td><a href="#/ZipCodes/edit/{{result.zipCodeId}}">{{result.timeZone}}</a></td>
+                    <td><a href="#/ZipCodes/edit/{{result.zipCodeId}}">{{result.observesDst}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

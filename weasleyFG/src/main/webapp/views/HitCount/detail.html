@@ -1,0 +1,37 @@
+<header ng-switch on="$location.path().indexOf('/HitCounts/new') > -1">
+    <h3 ng-switch-when="true">Create a new HitCount</h3>
+    <h3 ng-switch-when="false">View or edit HitCount</h3>
+</header>
+<form id="HitCountForm" name="HitCountForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': HitCountForm.server.$invalid}">
+        <label for="server" class="col-sm-2 control-label">Server</label>
+        <div id="serverControls" class="col-sm-10">
+            <input id="server" name="server" type="text" class="form-control" ng-model="hitCount.server" placeholder="Enter the HitCount Server"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': HitCountForm.webPage.$invalid}">
+        <label for="webPage" class="col-sm-2 control-label">Web Page</label>
+        <div id="webPageControls" class="col-sm-10">
+            <input id="webPage" name="webPage" type="text" class="form-control" ng-model="hitCount.webPage" placeholder="Enter the HitCount Web Page"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': HitCountForm.currentCount.$invalid}">
+        <label for="currentCount" class="col-sm-2 control-label">Current Count</label>
+        <div id="currentCountControls" class="col-sm-10">
+            <input id="currentCount" name="currentCount" type="number" class="form-control" ng-model="hitCount.currentCount" placeholder="Enter the HitCount Current Count"></input>
+            <span class="help-block error" ng-show="HitCountForm.currentCount.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveHitCount" name="saveHitCount" class="btn btn-primary" ng-disabled="isClean() || HitCountForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteHitCount" name="deleteHitCount" class="btn btn-danger" ng-show="hitCount.hitCountId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

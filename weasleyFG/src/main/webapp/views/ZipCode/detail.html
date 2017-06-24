@@ -1,0 +1,70 @@
+<header ng-switch on="$location.path().indexOf('/ZipCodes/new') > -1">
+    <h3 ng-switch-when="true">Create a new ZipCode</h3>
+    <h3 ng-switch-when="false">View or edit ZipCode</h3>
+</header>
+<form id="ZipCodeForm" name="ZipCodeForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': ZipCodeForm.zip.$invalid}">
+        <label for="zip" class="col-sm-2 control-label">Zip</label>
+        <div id="zipControls" class="col-sm-10">
+            <input id="zip" name="zip" type="text" required ng-maxlength="5" class="form-control" ng-model="zipCode.zip" placeholder="Enter the ZipCode Zip"></input>
+            <span class="help-block error" ng-show="ZipCodeForm.zip.$error.required">required</span> 
+            <span class="help-block error" ng-show="ZipCodeForm.zip.$error.maxlength">maximum length is 5</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ZipCodeForm.city.$invalid}">
+        <label for="city" class="col-sm-2 control-label">City</label>
+        <div id="cityControls" class="col-sm-10">
+            <input id="city" name="city" type="text" ng-maxlength="64" class="form-control" ng-model="zipCode.city" placeholder="Enter the ZipCode City"></input>
+            <span class="help-block error" ng-show="ZipCodeForm.city.$error.maxlength">maximum length is 64</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ZipCodeForm.state.$invalid}">
+        <label for="state" class="col-sm-2 control-label">State</label>
+        <div id="stateControls" class="col-sm-10">
+            <input id="state" name="state" type="text" ng-maxlength="2" class="form-control" ng-model="zipCode.state" placeholder="Enter the ZipCode State"></input>
+            <span class="help-block error" ng-show="ZipCodeForm.state.$error.maxlength">maximum length is 2</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ZipCodeForm.latitude.$invalid}">
+        <label for="latitude" class="col-sm-2 control-label">Latitude</label>
+        <div id="latitudeControls" class="col-sm-10">
+            <input id="latitude" name="latitude" type="text" class="form-control" ng-model="zipCode.latitude" placeholder="Enter the ZipCode Latitude"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ZipCodeForm.longitude.$invalid}">
+        <label for="longitude" class="col-sm-2 control-label">Longitude</label>
+        <div id="longitudeControls" class="col-sm-10">
+            <input id="longitude" name="longitude" type="text" class="form-control" ng-model="zipCode.longitude" placeholder="Enter the ZipCode Longitude"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ZipCodeForm.timeZone.$invalid}">
+        <label for="timeZone" class="col-sm-2 control-label">Time Zone</label>
+        <div id="timeZoneControls" class="col-sm-10">
+            <input id="timeZone" name="timeZone" type="number" class="form-control" ng-model="zipCode.timeZone" placeholder="Enter the ZipCode Time Zone"></input>
+            <span class="help-block error" ng-show="ZipCodeForm.timeZone.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ZipCodeForm.observesDst.$invalid}">
+        <label for="observesDst" class="col-sm-2 control-label">Observes Dst</label>
+        <div id="observesDstControls" class="col-sm-10">
+            <input id="observesDst" name="observesDst" type="text" ng-maxlength="1" class="form-control" ng-model="zipCode.observesDst" placeholder="Enter the ZipCode Observes Dst"></input>
+            <span class="help-block error" ng-show="ZipCodeForm.observesDst.$error.maxlength">maximum length is 1</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveZipCode" name="saveZipCode" class="btn btn-primary" ng-disabled="isClean() || ZipCodeForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteZipCode" name="deleteZipCode" class="btn btn-danger" ng-show="zipCode.zipCodeId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,31 @@
+<header ng-switch on="$location.path().indexOf('/ProductNotes/new') > -1">
+    <h3 ng-switch-when="true">Create a new ProductNote</h3>
+    <h3 ng-switch-when="false">View or edit ProductNote</h3>
+</header>
+<form id="ProductNoteForm" name="ProductNoteForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': ProductNoteForm.productId.$invalid}">
+        <label for="productId" class="col-sm-2 control-label">Product Id</label>
+        <div id="productIdControls" class="col-sm-10">
+            <input id="productId" name="productId" type="number" class="form-control" ng-model="productNote.productId" placeholder="Enter the ProductNote Product Id"></input>
+            <span class="help-block error" ng-show="ProductNoteForm.productId.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ProductNoteForm.noteId.$invalid}">
+        <label for="noteId" class="col-sm-2 control-label">Note Id</label>
+        <div id="noteIdControls" class="col-sm-10">
+            <input id="noteId" name="noteId" type="number" class="form-control" ng-model="productNote.noteId" placeholder="Enter the ProductNote Note Id"></input>
+            <span class="help-block error" ng-show="ProductNoteForm.noteId.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveProductNote" name="saveProductNote" class="btn btn-primary" ng-disabled="isClean() || ProductNoteForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteProductNote" name="deleteProductNote" class="btn btn-danger" ng-show="productNote.productNoteId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

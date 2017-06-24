@@ -1,0 +1,80 @@
+<header ng-switch on="$location.path().indexOf('/ShoppingCarts/new') > -1">
+    <h3 ng-switch-when="true">Create a new ShoppingCart</h3>
+    <h3 ng-switch-when="false">View or edit ShoppingCart</h3>
+</header>
+<form id="ShoppingCartForm" name="ShoppingCartForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': ShoppingCartForm.cartName.$invalid}">
+        <label for="cartName" class="col-sm-2 control-label">Cart Name</label>
+        <div id="cartNameControls" class="col-sm-10">
+            <input id="cartName" name="cartName" type="text" ng-maxlength="50" class="form-control" ng-model="shoppingCart.cartName" placeholder="Enter the ShoppingCart Cart Name"></input>
+            <span class="help-block error" ng-show="ShoppingCartForm.cartName.$error.maxlength">maximum length is 50</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ShoppingCartForm.userCartNumber.$invalid}">
+        <label for="userCartNumber" class="col-sm-2 control-label">User Cart Number</label>
+        <div id="userCartNumberControls" class="col-sm-10">
+            <input id="userCartNumber" name="userCartNumber" type="number" class="form-control" ng-model="shoppingCart.userCartNumber" placeholder="Enter the ShoppingCart User Cart Number"></input>
+            <span class="help-block error" ng-show="ShoppingCartForm.userCartNumber.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ShoppingCartForm.userName.$invalid}">
+        <label for="userName" class="col-sm-2 control-label">User Name</label>
+        <div id="userNameControls" class="col-sm-10">
+            <input id="userName" name="userName" type="text" ng-maxlength="50" class="form-control" ng-model="shoppingCart.userName" placeholder="Enter the ShoppingCart User Name"></input>
+            <span class="help-block error" ng-show="ShoppingCartForm.userName.$error.maxlength">maximum length is 50</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ShoppingCartForm.customerId.$invalid}">
+        <label for="customerId" class="col-sm-2 control-label">Customer Id</label>
+        <div id="customerIdControls" class="col-sm-10">
+            <input id="customerId" name="customerId" type="number" class="form-control" ng-model="shoppingCart.customerId" placeholder="Enter the ShoppingCart Customer Id"></input>
+            <span class="help-block error" ng-show="ShoppingCartForm.customerId.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ShoppingCartForm.jsessionId.$invalid}">
+        <label for="jsessionId" class="col-sm-2 control-label">Jsession Id</label>
+        <div id="jsessionIdControls" class="col-sm-10">
+            <input id="jsessionId" name="jsessionId" type="text" class="form-control" ng-model="shoppingCart.jsessionId" placeholder="Enter the ShoppingCart Jsession Id"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ShoppingCartForm.dateCreated.$invalid}">
+        <label for="dateCreated" class="col-sm-2 control-label">Date Created</label>
+        <div id="dateCreatedControls" class="col-sm-10">
+            <date id="dateCreated" name="dateCreated" ng-model="shoppingCart.dateCreated" placeholder="Enter the ShoppingCart Date Created"></date>
+            <span class="help-block error" ng-show="ShoppingCartForm.dateCreated.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="ShoppingCartForm.dateCreated.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ShoppingCartForm.expires.$invalid}">
+        <label for="expires" class="col-sm-2 control-label">Expires</label>
+        <div id="expiresControls" class="col-sm-10">
+            <date id="expires" name="expires" ng-model="shoppingCart.expires" placeholder="Enter the ShoppingCart Expires"></date>
+            <span class="help-block error" ng-show="ShoppingCartForm.expires.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="ShoppingCartForm.expires.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ShoppingCartForm.orderId.$invalid}">
+        <label for="orderId" class="col-sm-2 control-label">Order Id</label>
+        <div id="orderIdControls" class="col-sm-10">
+            <input id="orderId" name="orderId" type="number" class="form-control" ng-model="shoppingCart.orderId" placeholder="Enter the ShoppingCart Order Id"></input>
+            <span class="help-block error" ng-show="ShoppingCartForm.orderId.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveShoppingCart" name="saveShoppingCart" class="btn btn-primary" ng-disabled="isClean() || ShoppingCartForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteShoppingCart" name="deleteShoppingCart" class="btn btn-danger" ng-show="shoppingCart.shoppingCartId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

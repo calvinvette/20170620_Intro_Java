@@ -1,0 +1,76 @@
+<header ng-switch on="$location.path().indexOf('/CreditCards/new') > -1">
+    <h3 ng-switch-when="true">Create a new CreditCard</h3>
+    <h3 ng-switch-when="false">View or edit CreditCard</h3>
+</header>
+<form id="CreditCardForm" name="CreditCardForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': CreditCardForm.creditCardNumber.$invalid}">
+        <label for="creditCardNumber" class="col-sm-2 control-label">Credit Card Number</label>
+        <div id="creditCardNumberControls" class="col-sm-10">
+            <input id="creditCardNumber" name="creditCardNumber" type="text" required ng-maxlength="20" class="form-control" ng-model="creditCard.creditCardNumber" placeholder="Enter the CreditCard Credit Card Number"></input>
+            <span class="help-block error" ng-show="CreditCardForm.creditCardNumber.$error.required">required</span> 
+            <span class="help-block error" ng-show="CreditCardForm.creditCardNumber.$error.maxlength">maximum length is 20</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CreditCardForm.expirationDate.$invalid}">
+        <label for="expirationDate" class="col-sm-2 control-label">Expiration Date</label>
+        <div id="expirationDateControls" class="col-sm-10">
+            <date id="expirationDate" name="expirationDate" required ng-model="creditCard.expirationDate" placeholder="Enter the CreditCard Expiration Date"></date>
+            <span class="help-block error" ng-show="CreditCardForm.expirationDate.$error.required">required</span> 
+            <span class="help-block error" ng-show="CreditCardForm.expirationDate.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="CreditCardForm.expirationDate.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CreditCardForm.billingAddress.$invalid}">
+        <label for="billingAddress" class="col-sm-2 control-label">Billing Address</label>
+        <div id="billingAddressControls" class="col-sm-10">
+            <input id="billingAddress" name="billingAddress" type="number" class="form-control" ng-model="creditCard.billingAddress" placeholder="Enter the CreditCard Billing Address"></input>
+            <span class="help-block error" ng-show="CreditCardForm.billingAddress.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CreditCardForm.cvv.$invalid}">
+        <label for="cvv" class="col-sm-2 control-label">Cvv</label>
+        <div id="cvvControls" class="col-sm-10">
+            <input id="cvv" name="cvv" type="number" required class="form-control" ng-model="creditCard.cvv" placeholder="Enter the CreditCard Cvv"></input>
+            <span class="help-block error" ng-show="CreditCardForm.cvv.$error.required">required</span> 
+            <span class="help-block error" ng-show="CreditCardForm.cvv.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CreditCardForm.nameOnCard.$invalid}">
+        <label for="nameOnCard" class="col-sm-2 control-label">Name On Card</label>
+        <div id="nameOnCardControls" class="col-sm-10">
+            <input id="nameOnCard" name="nameOnCard" type="text" ng-maxlength="50" class="form-control" ng-model="creditCard.nameOnCard" placeholder="Enter the CreditCard Name On Card"></input>
+            <span class="help-block error" ng-show="CreditCardForm.nameOnCard.$error.maxlength">maximum length is 50</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CreditCardForm.businessName.$invalid}">
+        <label for="businessName" class="col-sm-2 control-label">Business Name</label>
+        <div id="businessNameControls" class="col-sm-10">
+            <input id="businessName" name="businessName" type="text" ng-maxlength="50" class="form-control" ng-model="creditCard.businessName" placeholder="Enter the CreditCard Business Name"></input>
+            <span class="help-block error" ng-show="CreditCardForm.businessName.$error.maxlength">maximum length is 50</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CreditCardForm.customerId.$invalid}">
+        <label for="customerId" class="col-sm-2 control-label">Customer Id</label>
+        <div id="customerIdControls" class="col-sm-10">
+            <input id="customerId" name="customerId" type="number" required class="form-control" ng-model="creditCard.customerId" placeholder="Enter the CreditCard Customer Id"></input>
+            <span class="help-block error" ng-show="CreditCardForm.customerId.$error.required">required</span> 
+            <span class="help-block error" ng-show="CreditCardForm.customerId.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveCreditCard" name="saveCreditCard" class="btn btn-primary" ng-disabled="isClean() || CreditCardForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteCreditCard" name="deleteCreditCard" class="btn btn-danger" ng-show="creditCard.creditCardId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

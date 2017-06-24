@@ -1,0 +1,84 @@
+<div class="form-horizontal">
+    <h3>Create a new OrderStatus</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/OrderStatuses/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for OrderStatuses</h3>
+    <form id="OrderStatusSearch" class="form-horizontal">
+        
+    <div class="form-group">
+        <label for="status" class="col-sm-2 control-label">Status</label>
+        <div class="col-sm-10">
+            <input id="status" name="status" class="form-control" type="text" ng-model="search.status" placeholder="Enter the OrderStatus Status"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="statusText" class="col-sm-2 control-label">Status Text</label>
+        <div class="col-sm-10">
+            <input id="statusText" name="statusText" class="form-control" type="text" ng-model="search.statusText" placeholder="Enter the OrderStatus Status Text"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="description" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+            <input id="description" name="description" class="form-control" type="text" ng-model="search.description" placeholder="Enter the OrderStatus Description"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="prereq" class="col-sm-2 control-label">Prereq</label>
+        <div class="col-sm-10">
+            <input id="prereq" name="prereq" class="form-control" type="text" ng-model="search.prereq" placeholder="Enter the OrderStatus Prereq"></input>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Status Text</th>
+                    <th>Description</th>
+                    <th>Prereq</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <td><a href="#/OrderStatuses/edit/{{result.orderStatusId}}">{{result.status}}</a></td>
+                    <td><a href="#/OrderStatuses/edit/{{result.orderStatusId}}">{{result.statusText}}</a></td>
+                    <td><a href="#/OrderStatuses/edit/{{result.orderStatusId}}">{{result.description}}</a></td>
+                    <td><a href="#/OrderStatuses/edit/{{result.orderStatusId}}">{{result.prereq}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

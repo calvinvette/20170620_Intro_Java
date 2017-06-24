@@ -1,0 +1,75 @@
+<div class="form-horizontal">
+    <h3>Create a new OrderPayment</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/OrderPayments/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for OrderPayments</h3>
+    <form id="OrderPaymentSearch" class="form-horizontal">
+        
+    <div class="form-group">
+        <label for="orderId" class="col-sm-2 control-label">Order Id</label>
+        <div class="col-sm-10">
+            <input id="orderId" name="orderId" class="form-control" type="text" ng-model="search.orderId" placeholder="Enter the OrderPayment Order Id"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="paymentId" class="col-sm-2 control-label">Payment Id</label>
+        <div class="col-sm-10">
+            <input id="paymentId" name="paymentId" class="form-control" type="text" ng-model="search.paymentId" placeholder="Enter the OrderPayment Payment Id"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="amountForOrder" class="col-sm-2 control-label">Amount For Order</label>
+        <div class="col-sm-10">
+            <input id="amountForOrder" name="amountForOrder" class="form-control" type="text" ng-model="search.amountForOrder" placeholder="Enter the OrderPayment Amount For Order"></input>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Payment Id</th>
+                    <th>Amount For Order</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <td><a href="#/OrderPayments/edit/{{result.orderPaymentId}}">{{result.orderId}}</a></td>
+                    <td><a href="#/OrderPayments/edit/{{result.orderPaymentId}}">{{result.paymentId}}</a></td>
+                    <td><a href="#/OrderPayments/edit/{{result.orderPaymentId}}">{{result.amountForOrder}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

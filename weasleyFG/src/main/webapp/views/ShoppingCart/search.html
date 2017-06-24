@@ -1,0 +1,108 @@
+<div class="form-horizontal">
+    <h3>Create a new ShoppingCart</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/ShoppingCarts/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for ShoppingCarts</h3>
+    <form id="ShoppingCartSearch" class="form-horizontal">
+        
+    <div class="form-group">
+        <label for="cartName" class="col-sm-2 control-label">Cart Name</label>
+        <div class="col-sm-10">
+            <input id="cartName" name="cartName" class="form-control" type="text" ng-model="search.cartName" placeholder="Enter the ShoppingCart Cart Name"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="userCartNumber" class="col-sm-2 control-label">User Cart Number</label>
+        <div class="col-sm-10">
+            <input id="userCartNumber" name="userCartNumber" class="form-control" type="text" ng-model="search.userCartNumber" placeholder="Enter the ShoppingCart User Cart Number"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="userName" class="col-sm-2 control-label">User Name</label>
+        <div class="col-sm-10">
+            <input id="userName" name="userName" class="form-control" type="text" ng-model="search.userName" placeholder="Enter the ShoppingCart User Name"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="customerId" class="col-sm-2 control-label">Customer Id</label>
+        <div class="col-sm-10">
+            <input id="customerId" name="customerId" class="form-control" type="text" ng-model="search.customerId" placeholder="Enter the ShoppingCart Customer Id"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="jsessionId" class="col-sm-2 control-label">Jsession Id</label>
+        <div class="col-sm-10">
+            <input id="jsessionId" name="jsessionId" class="form-control" type="text" ng-model="search.jsessionId" placeholder="Enter the ShoppingCart Jsession Id"></input>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="orderId" class="col-sm-2 control-label">Order Id</label>
+        <div class="col-sm-10">
+            <input id="orderId" name="orderId" class="form-control" type="text" ng-model="search.orderId" placeholder="Enter the ShoppingCart Order Id"></input>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Cart Name</th>
+                    <th>User Cart Number</th>
+                    <th>User Name</th>
+                    <th>Customer Id</th>
+                    <th>Jsession Id</th>
+                    <th>Date Created</th>
+                    <th>Expires</th>
+                    <th>Order Id</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <td><a href="#/ShoppingCarts/edit/{{result.shoppingCartId}}">{{result.cartName}}</a></td>
+                    <td><a href="#/ShoppingCarts/edit/{{result.shoppingCartId}}">{{result.userCartNumber}}</a></td>
+                    <td><a href="#/ShoppingCarts/edit/{{result.shoppingCartId}}">{{result.userName}}</a></td>
+                    <td><a href="#/ShoppingCarts/edit/{{result.shoppingCartId}}">{{result.customerId}}</a></td>
+                    <td><a href="#/ShoppingCarts/edit/{{result.shoppingCartId}}">{{result.jsessionId}}</a></td>
+                    <td><a href="#/ShoppingCarts/edit/{{result.shoppingCartId}}">{{result.dateCreated| date:'mediumDate'}}</a></td>
+                    <td><a href="#/ShoppingCarts/edit/{{result.shoppingCartId}}">{{result.expires| date:'mediumDate'}}</a></td>
+                    <td><a href="#/ShoppingCarts/edit/{{result.shoppingCartId}}">{{result.orderId}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

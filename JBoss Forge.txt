@@ -1,0 +1,116 @@
+JBoss Forge
+
+We're assuming you already have JDK, Maven, JBoss Wildfly and MySQL or MariaDB installed with the NextGen Weasley data set
+
+	http://java.oracle.com	
+		* Download the latest JDK8 for your platform. 
+		* Create the JAVA_HOME environment variable and make JAVA_HOME/bin part of your PATH.
+
+	http://maven.apache.org	
+		* Download and extract the latest 3.x Maven. 
+		* Make the MAVEN_HOME environment variable and make MAVEN_HOME/bin part of your PATH.
+
+	http://wildfly.org	
+		- We did this on Wildfly 10.1. WildFly 10.0 should also work. 
+		* Run on a recent JDK8 or above. 
+		* Create the WILDFLY_HOME environment variable and make the WILDFLY_HOME/bin part of your path
+
+	http://mariadb.org	
+		- We used 10.2 MariaDB Community Edition (OpenSource), but any MySQL version 5.1 or above should work. 
+		* Make sure the "mysql" command line tool is part of your PATH
+
+	http://nextgeneducation.com/weasley/mysql_weasley.tar.bz2	
+		- DDL and DML for the Weasley data set. 
+		* Extract this using 7zip or an equivalent tool. 
+
+Download and unzip JBoss Forge
+Open a command prompt
+
+	Set a FORGE_HOME environment variable to the top level of the unzipped directory.
+	For example, if you unzipped forge-distribution-3.7.1.Final.zip to c:\java:
+
+		set FORGE_HOME=c:\java\forge-distribution-3.7.1.Final
+
+	Change to your workspace directory
+
+		cd \workspace
+
+	Set launch the "forge" app
+
+		forge
+
+	Next, issue the following commands in the forge prompt (the "===" are not typed; be prepared for several-second pauses):
+	===
+
+	project-new --named weasleyFG --top-level-package com.weasley.store --type war --final-name WeasleyStore --stack JAVA_EE_7
+
+	jpa-setup --jpa-provider Hibernate --data-source-name java:jboss/datasources/WeasleyDS --db-type MYSQL --jpa-container Hibernate --schema-generation-type NONE
+ 
+	jpa-generate-entities-from-tables --jdbc-url jdbc:mysql://localhost:3306/weasleydb --user-name calvin --user-password password --driver-location ~/lib/mysql-connector-java.jar --hibernate-dialect org.hibernate.dialect.MySQL5Dialect --driver-class com.mysql.jdbc.Driver  --database-tables *
+
+	jpa-generate-daos-from-entities --package-name com.weasley.store.dao --targets com.weasley.store.model.* --generator JPA_ENTITY
+
+	rest-generate-endpoints-from-entities --target-package com.weasley.store.rest --targets com.weasley.store.model.*
+
+	scaffold-generate --provider AngularJS --targets com.weasley.store.model.*
+
+	exit
+
+	===
+
+	There are more commands, for example, to manipulate One-to-One or One-to-Many relationships or to add Bean Validation constraints to fields.
+	You can also add Entities that don't yet exist in the database (like when you're adding new functionality to an existing app).
+
+		http://forge.jboss.org/document/sample-forge-usage-tasks
+
+	Now you need to use Maven to compile and package the app:
+
+		cd weasleyFG
+		mvn compile
+		mvn package
+
+	*** To run on WildFly, we'll need to create the DataSource and make sure the project points to it
+
+	If you have a new installation of WildFly, you have to define the driver and the WeasleyDS data source. Open the jboss-cli (using either jboss-cli.sh on *nix or jboss-cli.bat on Windows):
+
+		connect 127.0.0.1
+ 
+		batch
+ 
+		module add --name=com.mysql --resources=~/lib/mysql-connector-java.jar --dependencies=javax.api,javax.transaction.api
+  
+		/subsystem=datasources/jdbc-driver=mysql:add(driver-name=mysql,driver-module-name=com.mysql)
+ 
+		data-source add --name=WeasleyDS --jndi-name=java:/jboss/datasources/WeasleyDS --connection-url=jdbc:mysql://localhost:3306/weasleydb --driver-name=mysql --user-name=calvin --password=password --use-ccm="false"
+ 
+		reload
+
+		connect 127.0.0.1
+
+		data-source test-connection-in-pool --name=WeasleyDS
+
+		run-batch
+
+
+
+	If you already have a WildFly installation with the MySQL driver installed into your WildFly, you just add the data source. Open the jboss-cli (using either jboss-cli.sh on *nix or jboss-cli.bat on Windows):
+
+		connect 127.0.0.1
+		data-source add --name=WeasleyDS --jndi-name=java:/jboss/datasources/WeasleyDS --connection-url=jdbc:mysql://localhost:3306/weasleydb --driver-name=mysql --user-name=calvin --password=password --use-ccm="false"
+		reload
+		connect 127.0.0.1
+		data-source test-connection-in-pool --name=WeasleyDS
+
+
+ 	Check there persistence.xml datasource is the same:
+
+		weasleyFG/src/main/resources/META-INF/persistence.xml
+
+	Now you need to copy the generated WAR file to your deployment folder 	
+
+		cp target/WeasleyStore.war $WILDFLY_HOME/standalone/deployments/
+
+
+	Open a browser to:
+
+		http://localhost:8080/WeasleyStore

@@ -1,0 +1,53 @@
+<header ng-switch on="$location.path().indexOf('/Customers/new') > -1">
+    <h3 ng-switch-when="true">Create a new Customer</h3>
+    <h3 ng-switch-when="false">View or edit Customer</h3>
+</header>
+<form id="CustomerForm" name="CustomerForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': CustomerForm.firstName.$invalid}">
+        <label for="firstName" class="col-sm-2 control-label">First Name</label>
+        <div id="firstNameControls" class="col-sm-10">
+            <input id="firstName" name="firstName" type="text" class="form-control" ng-model="customer.firstName" placeholder="Enter the Customer First Name"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CustomerForm.lastName.$invalid}">
+        <label for="lastName" class="col-sm-2 control-label">Last Name</label>
+        <div id="lastNameControls" class="col-sm-10">
+            <input id="lastName" name="lastName" type="text" class="form-control" ng-model="customer.lastName" placeholder="Enter the Customer Last Name"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CustomerForm.phoneNumber.$invalid}">
+        <label for="phoneNumber" class="col-sm-2 control-label">Phone Number</label>
+        <div id="phoneNumberControls" class="col-sm-10">
+            <input id="phoneNumber" name="phoneNumber" type="text" ng-maxlength="25" class="form-control" ng-model="customer.phoneNumber" placeholder="Enter the Customer Phone Number"></input>
+            <span class="help-block error" ng-show="CustomerForm.phoneNumber.$error.maxlength">maximum length is 25</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CustomerForm.homeAddress.$invalid}">
+        <label for="homeAddress" class="col-sm-2 control-label">Home Address</label>
+        <div id="homeAddressControls" class="col-sm-10">
+            <input id="homeAddress" name="homeAddress" type="number" class="form-control" ng-model="customer.homeAddress" placeholder="Enter the Customer Home Address"></input>
+            <span class="help-block error" ng-show="CustomerForm.homeAddress.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CustomerForm.workAddress.$invalid}">
+        <label for="workAddress" class="col-sm-2 control-label">Work Address</label>
+        <div id="workAddressControls" class="col-sm-10">
+            <input id="workAddress" name="workAddress" type="number" class="form-control" ng-model="customer.workAddress" placeholder="Enter the Customer Work Address"></input>
+            <span class="help-block error" ng-show="CustomerForm.workAddress.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveCustomer" name="saveCustomer" class="btn btn-primary" ng-disabled="isClean() || CustomerForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteCustomer" name="deleteCustomer" class="btn btn-danger" ng-show="customer.customerId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

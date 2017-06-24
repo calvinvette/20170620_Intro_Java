@@ -1,0 +1,92 @@
+<header ng-switch on="$location.path().indexOf('/BankAccounts/new') > -1">
+    <h3 ng-switch-when="true">Create a new BankAccount</h3>
+    <h3 ng-switch-when="false">View or edit BankAccount</h3>
+</header>
+<form id="BankAccountForm" name="BankAccountForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': BankAccountForm.bankName.$invalid}">
+        <label for="bankName" class="col-sm-2 control-label">Bank Name</label>
+        <div id="bankNameControls" class="col-sm-10">
+            <input id="bankName" name="bankName" type="text" required ng-maxlength="50" class="form-control" ng-model="bankAccount.bankName" placeholder="Enter the BankAccount Bank Name"></input>
+            <span class="help-block error" ng-show="BankAccountForm.bankName.$error.required">required</span> 
+            <span class="help-block error" ng-show="BankAccountForm.bankName.$error.maxlength">maximum length is 50</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': BankAccountForm.routingNumber.$invalid}">
+        <label for="routingNumber" class="col-sm-2 control-label">Routing Number</label>
+        <div id="routingNumberControls" class="col-sm-10">
+            <input id="routingNumber" name="routingNumber" type="text" required ng-maxlength="20" class="form-control" ng-model="bankAccount.routingNumber" placeholder="Enter the BankAccount Routing Number"></input>
+            <span class="help-block error" ng-show="BankAccountForm.routingNumber.$error.required">required</span> 
+            <span class="help-block error" ng-show="BankAccountForm.routingNumber.$error.maxlength">maximum length is 20</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': BankAccountForm.accountNumber.$invalid}">
+        <label for="accountNumber" class="col-sm-2 control-label">Account Number</label>
+        <div id="accountNumberControls" class="col-sm-10">
+            <input id="accountNumber" name="accountNumber" type="text" required ng-maxlength="20" class="form-control" ng-model="bankAccount.accountNumber" placeholder="Enter the BankAccount Account Number"></input>
+            <span class="help-block error" ng-show="BankAccountForm.accountNumber.$error.required">required</span> 
+            <span class="help-block error" ng-show="BankAccountForm.accountNumber.$error.maxlength">maximum length is 20</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': BankAccountForm.accountOpenDate.$invalid}">
+        <label for="accountOpenDate" class="col-sm-2 control-label">Account Open Date</label>
+        <div id="accountOpenDateControls" class="col-sm-10">
+            <date id="accountOpenDate" name="accountOpenDate" ng-model="bankAccount.accountOpenDate" placeholder="Enter the BankAccount Account Open Date"></date>
+            <span class="help-block error" ng-show="BankAccountForm.accountOpenDate.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="BankAccountForm.accountOpenDate.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': BankAccountForm.accountCloseDate.$invalid}">
+        <label for="accountCloseDate" class="col-sm-2 control-label">Account Close Date</label>
+        <div id="accountCloseDateControls" class="col-sm-10">
+            <date id="accountCloseDate" name="accountCloseDate" ng-model="bankAccount.accountCloseDate" placeholder="Enter the BankAccount Account Close Date"></date>
+            <span class="help-block error" ng-show="BankAccountForm.accountCloseDate.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="BankAccountForm.accountCloseDate.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': BankAccountForm.corporateAddress.$invalid}">
+        <label for="corporateAddress" class="col-sm-2 control-label">Corporate Address</label>
+        <div id="corporateAddressControls" class="col-sm-10">
+            <input id="corporateAddress" name="corporateAddress" type="number" class="form-control" ng-model="bankAccount.corporateAddress" placeholder="Enter the BankAccount Corporate Address"></input>
+            <span class="help-block error" ng-show="BankAccountForm.corporateAddress.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': BankAccountForm.branchAddress.$invalid}">
+        <label for="branchAddress" class="col-sm-2 control-label">Branch Address</label>
+        <div id="branchAddressControls" class="col-sm-10">
+            <input id="branchAddress" name="branchAddress" type="number" class="form-control" ng-model="bankAccount.branchAddress" placeholder="Enter the BankAccount Branch Address"></input>
+            <span class="help-block error" ng-show="BankAccountForm.branchAddress.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': BankAccountForm.phoneNumber.$invalid}">
+        <label for="phoneNumber" class="col-sm-2 control-label">Phone Number</label>
+        <div id="phoneNumberControls" class="col-sm-10">
+            <input id="phoneNumber" name="phoneNumber" type="text" ng-maxlength="25" class="form-control" ng-model="bankAccount.phoneNumber" placeholder="Enter the BankAccount Phone Number"></input>
+            <span class="help-block error" ng-show="BankAccountForm.phoneNumber.$error.maxlength">maximum length is 25</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': BankAccountForm.customerId.$invalid}">
+        <label for="customerId" class="col-sm-2 control-label">Customer Id</label>
+        <div id="customerIdControls" class="col-sm-10">
+            <input id="customerId" name="customerId" type="number" class="form-control" ng-model="bankAccount.customerId" placeholder="Enter the BankAccount Customer Id"></input>
+            <span class="help-block error" ng-show="BankAccountForm.customerId.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveBankAccount" name="saveBankAccount" class="btn btn-primary" ng-disabled="isClean() || BankAccountForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteBankAccount" name="deleteBankAccount" class="btn btn-danger" ng-show="bankAccount.bankAccountId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,31 @@
+<header ng-switch on="$location.path().indexOf('/FacebookAssociations/new') > -1">
+    <h3 ng-switch-when="true">Create a new FacebookAssociations</h3>
+    <h3 ng-switch-when="false">View or edit FacebookAssociations</h3>
+</header>
+<form id="FacebookAssociationsForm" name="FacebookAssociationsForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': FacebookAssociationsForm.facebookAccountId1.$invalid}">
+        <label for="facebookAccountId1" class="col-sm-2 control-label">Facebook Account Id 1</label>
+        <div id="facebookAccountId1Controls" class="col-sm-10">
+            <input id="facebookAccountId1" name="facebookAccountId1" type="number" class="form-control" ng-model="facebookAssociations.facebookAccountId1" placeholder="Enter the FacebookAssociations Facebook Account Id 1"></input>
+            <span class="help-block error" ng-show="FacebookAssociationsForm.facebookAccountId1.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': FacebookAssociationsForm.facebookAccountId2.$invalid}">
+        <label for="facebookAccountId2" class="col-sm-2 control-label">Facebook Account Id 2</label>
+        <div id="facebookAccountId2Controls" class="col-sm-10">
+            <input id="facebookAccountId2" name="facebookAccountId2" type="number" class="form-control" ng-model="facebookAssociations.facebookAccountId2" placeholder="Enter the FacebookAssociations Facebook Account Id 2"></input>
+            <span class="help-block error" ng-show="FacebookAssociationsForm.facebookAccountId2.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveFacebookAssociations" name="saveFacebookAssociations" class="btn btn-primary" ng-disabled="isClean() || FacebookAssociationsForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteFacebookAssociations" name="deleteFacebookAssociations" class="btn btn-danger" ng-show="facebookAssociations.associationId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

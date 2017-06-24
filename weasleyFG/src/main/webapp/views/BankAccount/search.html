@@ -1,0 +1,117 @@
+<div class="form-horizontal">
+    <h3>Create a new BankAccount</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/BankAccounts/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for BankAccounts</h3>
+    <form id="BankAccountSearch" class="form-horizontal">
+        
+    <div class="form-group">
+        <label for="bankName" class="col-sm-2 control-label">Bank Name</label>
+        <div class="col-sm-10">
+            <input id="bankName" name="bankName" class="form-control" type="text" ng-model="search.bankName" placeholder="Enter the BankAccount Bank Name"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="routingNumber" class="col-sm-2 control-label">Routing Number</label>
+        <div class="col-sm-10">
+            <input id="routingNumber" name="routingNumber" class="form-control" type="text" ng-model="search.routingNumber" placeholder="Enter the BankAccount Routing Number"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="accountNumber" class="col-sm-2 control-label">Account Number</label>
+        <div class="col-sm-10">
+            <input id="accountNumber" name="accountNumber" class="form-control" type="text" ng-model="search.accountNumber" placeholder="Enter the BankAccount Account Number"></input>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <label for="corporateAddress" class="col-sm-2 control-label">Corporate Address</label>
+        <div class="col-sm-10">
+            <input id="corporateAddress" name="corporateAddress" class="form-control" type="text" ng-model="search.corporateAddress" placeholder="Enter the BankAccount Corporate Address"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="branchAddress" class="col-sm-2 control-label">Branch Address</label>
+        <div class="col-sm-10">
+            <input id="branchAddress" name="branchAddress" class="form-control" type="text" ng-model="search.branchAddress" placeholder="Enter the BankAccount Branch Address"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="phoneNumber" class="col-sm-2 control-label">Phone Number</label>
+        <div class="col-sm-10">
+            <input id="phoneNumber" name="phoneNumber" class="form-control" type="text" ng-model="search.phoneNumber" placeholder="Enter the BankAccount Phone Number"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="customerId" class="col-sm-2 control-label">Customer Id</label>
+        <div class="col-sm-10">
+            <input id="customerId" name="customerId" class="form-control" type="text" ng-model="search.customerId" placeholder="Enter the BankAccount Customer Id"></input>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Bank Name</th>
+                    <th>Routing Number</th>
+                    <th>Account Number</th>
+                    <th>Account Open Date</th>
+                    <th>Account Close Date</th>
+                    <th>Corporate Address</th>
+                    <th>Branch Address</th>
+                    <th>Phone Number</th>
+                    <th>Customer Id</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <td><a href="#/BankAccounts/edit/{{result.bankAccountId}}">{{result.bankName}}</a></td>
+                    <td><a href="#/BankAccounts/edit/{{result.bankAccountId}}">{{result.routingNumber}}</a></td>
+                    <td><a href="#/BankAccounts/edit/{{result.bankAccountId}}">{{result.accountNumber}}</a></td>
+                    <td><a href="#/BankAccounts/edit/{{result.bankAccountId}}">{{result.accountOpenDate| date:'mediumDate'}}</a></td>
+                    <td><a href="#/BankAccounts/edit/{{result.bankAccountId}}">{{result.accountCloseDate| date:'mediumDate'}}</a></td>
+                    <td><a href="#/BankAccounts/edit/{{result.bankAccountId}}">{{result.corporateAddress}}</a></td>
+                    <td><a href="#/BankAccounts/edit/{{result.bankAccountId}}">{{result.branchAddress}}</a></td>
+                    <td><a href="#/BankAccounts/edit/{{result.bankAccountId}}">{{result.phoneNumber}}</a></td>
+                    <td><a href="#/BankAccounts/edit/{{result.bankAccountId}}">{{result.customerId}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

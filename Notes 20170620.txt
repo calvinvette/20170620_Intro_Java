@@ -399,9 +399,18 @@ FileOutputStream - open a binary file for writing
 FileReader
 FileInputStream
 
-Exercise 21 + break until 3:15
 
 
+
+Test-Driven Development - TDD
+
+	Test as you code
+	Cost of a bug expands exponentially as time goes on
+
+Thread
+	Main thread
+		spawns utility thread as background
+		threads can share memory with the main
 
 
 

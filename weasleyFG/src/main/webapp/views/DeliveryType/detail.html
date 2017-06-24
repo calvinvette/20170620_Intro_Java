@@ -1,0 +1,54 @@
+<header ng-switch on="$location.path().indexOf('/DeliveryTypes/new') > -1">
+    <h3 ng-switch-when="true">Create a new DeliveryType</h3>
+    <h3 ng-switch-when="false">View or edit DeliveryType</h3>
+</header>
+<form id="DeliveryTypeForm" name="DeliveryTypeForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': DeliveryTypeForm.deliveryType.$invalid}">
+        <label for="deliveryType" class="col-sm-2 control-label">Delivery Type</label>
+        <div id="deliveryTypeControls" class="col-sm-10">
+            <input id="deliveryType" name="deliveryType" type="text" ng-maxlength="5" class="form-control" ng-model="deliveryType.deliveryType" placeholder="Enter the DeliveryType Delivery Type"></input>
+            <span class="help-block error" ng-show="DeliveryTypeForm.deliveryType.$error.maxlength">maximum length is 5</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DeliveryTypeForm.deliveryTypeText.$invalid}">
+        <label for="deliveryTypeText" class="col-sm-2 control-label">Delivery Type Text</label>
+        <div id="deliveryTypeTextControls" class="col-sm-10">
+            <input id="deliveryTypeText" name="deliveryTypeText" type="text" ng-maxlength="50" class="form-control" ng-model="deliveryType.deliveryTypeText" placeholder="Enter the DeliveryType Delivery Type Text"></input>
+            <span class="help-block error" ng-show="DeliveryTypeForm.deliveryTypeText.$error.maxlength">maximum length is 50</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DeliveryTypeForm.description.$invalid}">
+        <label for="description" class="col-sm-2 control-label">Description</label>
+        <div id="descriptionControls" class="col-sm-10">
+            <input id="description" name="description" type="text" class="form-control" ng-model="deliveryType.description" placeholder="Enter the DeliveryType Description"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DeliveryTypeForm.enabled.$invalid}">
+        <label for="enabled" class="col-sm-2 control-label">Enabled</label>
+        <div id="enabledControls" class="col-sm-10">
+            <input id="enabled" name="enabled" type="text" ng-maxlength="1" class="form-control" ng-model="deliveryType.enabled" placeholder="Enter the DeliveryType Enabled"></input>
+            <span class="help-block error" ng-show="DeliveryTypeForm.enabled.$error.maxlength">maximum length is 1</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': DeliveryTypeForm.trackable.$invalid}">
+        <label for="trackable" class="col-sm-2 control-label">Trackable</label>
+        <div id="trackableControls" class="col-sm-10">
+            <input id="trackable" name="trackable" type="text" ng-maxlength="1" class="form-control" ng-model="deliveryType.trackable" placeholder="Enter the DeliveryType Trackable"></input>
+            <span class="help-block error" ng-show="DeliveryTypeForm.trackable.$error.maxlength">maximum length is 1</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveDeliveryType" name="saveDeliveryType" class="btn btn-primary" ng-disabled="isClean() || DeliveryTypeForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteDeliveryType" name="deleteDeliveryType" class="btn btn-danger" ng-show="deliveryType.deliveryTypeId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

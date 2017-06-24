@@ -1,0 +1,46 @@
+<header ng-switch on="$location.path().indexOf('/OrderStatuses/new') > -1">
+    <h3 ng-switch-when="true">Create a new OrderStatus</h3>
+    <h3 ng-switch-when="false">View or edit OrderStatus</h3>
+</header>
+<form id="OrderStatusForm" name="OrderStatusForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': OrderStatusForm.status.$invalid}">
+        <label for="status" class="col-sm-2 control-label">Status</label>
+        <div id="statusControls" class="col-sm-10">
+            <input id="status" name="status" type="text" ng-maxlength="5" class="form-control" ng-model="orderStatus.status" placeholder="Enter the OrderStatus Status"></input>
+            <span class="help-block error" ng-show="OrderStatusForm.status.$error.maxlength">maximum length is 5</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': OrderStatusForm.statusText.$invalid}">
+        <label for="statusText" class="col-sm-2 control-label">Status Text</label>
+        <div id="statusTextControls" class="col-sm-10">
+            <input id="statusText" name="statusText" type="text" ng-maxlength="32" class="form-control" ng-model="orderStatus.statusText" placeholder="Enter the OrderStatus Status Text"></input>
+            <span class="help-block error" ng-show="OrderStatusForm.statusText.$error.maxlength">maximum length is 32</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': OrderStatusForm.description.$invalid}">
+        <label for="description" class="col-sm-2 control-label">Description</label>
+        <div id="descriptionControls" class="col-sm-10">
+            <input id="description" name="description" type="text" class="form-control" ng-model="orderStatus.description" placeholder="Enter the OrderStatus Description"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': OrderStatusForm.prereq.$invalid}">
+        <label for="prereq" class="col-sm-2 control-label">Prereq</label>
+        <div id="prereqControls" class="col-sm-10">
+            <input id="prereq" name="prereq" type="number" class="form-control" ng-model="orderStatus.prereq" placeholder="Enter the OrderStatus Prereq"></input>
+            <span class="help-block error" ng-show="OrderStatusForm.prereq.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveOrderStatus" name="saveOrderStatus" class="btn btn-primary" ng-disabled="isClean() || OrderStatusForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteOrderStatus" name="deleteOrderStatus" class="btn btn-danger" ng-show="orderStatus.orderStatusId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

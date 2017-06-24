@@ -1,0 +1,59 @@
+<header ng-switch on="$location.path().indexOf('/CreditCardPayments/new') > -1">
+    <h3 ng-switch-when="true">Create a new CreditCardPayment</h3>
+    <h3 ng-switch-when="false">View or edit CreditCardPayment</h3>
+</header>
+<form id="CreditCardPaymentForm" name="CreditCardPaymentForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': CreditCardPaymentForm.creditCardId.$invalid}">
+        <label for="creditCardId" class="col-sm-2 control-label">Credit Card Id</label>
+        <div id="creditCardIdControls" class="col-sm-10">
+            <input id="creditCardId" name="creditCardId" type="number" required class="form-control" ng-model="creditCardPayment.creditCardId" placeholder="Enter the CreditCardPayment Credit Card Id"></input>
+            <span class="help-block error" ng-show="CreditCardPaymentForm.creditCardId.$error.required">required</span> 
+            <span class="help-block error" ng-show="CreditCardPaymentForm.creditCardId.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CreditCardPaymentForm.paymentId.$invalid}">
+        <label for="paymentId" class="col-sm-2 control-label">Payment Id</label>
+        <div id="paymentIdControls" class="col-sm-10">
+            <input id="paymentId" name="paymentId" type="number" required class="form-control" ng-model="creditCardPayment.paymentId" placeholder="Enter the CreditCardPayment Payment Id"></input>
+            <span class="help-block error" ng-show="CreditCardPaymentForm.paymentId.$error.required">required</span> 
+            <span class="help-block error" ng-show="CreditCardPaymentForm.paymentId.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CreditCardPaymentForm.processDate.$invalid}">
+        <label for="processDate" class="col-sm-2 control-label">Process Date</label>
+        <div id="processDateControls" class="col-sm-10">
+            <date id="processDate" name="processDate" required ng-model="creditCardPayment.processDate" placeholder="Enter the CreditCardPayment Process Date"></date>
+            <span class="help-block error" ng-show="CreditCardPaymentForm.processDate.$error.required">required</span> 
+            <span class="help-block error" ng-show="CreditCardPaymentForm.processDate.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="CreditCardPaymentForm.processDate.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CreditCardPaymentForm.authorization.$invalid}">
+        <label for="authorization" class="col-sm-2 control-label">Authorization</label>
+        <div id="authorizationControls" class="col-sm-10">
+            <input id="authorization" name="authorization" type="number" class="form-control" ng-model="creditCardPayment.authorization" placeholder="Enter the CreditCardPayment Authorization"></input>
+            <span class="help-block error" ng-show="CreditCardPaymentForm.authorization.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CreditCardPaymentForm.settled.$invalid}">
+        <label for="settled" class="col-sm-2 control-label">Settled</label>
+        <div id="settledControls" class="col-sm-10">
+            <input id="settled" name="settled" type="text" ng-maxlength="1" class="form-control" ng-model="creditCardPayment.settled" placeholder="Enter the CreditCardPayment Settled"></input>
+            <span class="help-block error" ng-show="CreditCardPaymentForm.settled.$error.maxlength">maximum length is 1</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveCreditCardPayment" name="saveCreditCardPayment" class="btn btn-primary" ng-disabled="isClean() || CreditCardPaymentForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteCreditCardPayment" name="deleteCreditCardPayment" class="btn btn-danger" ng-show="creditCardPayment.creditCardPaymentId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

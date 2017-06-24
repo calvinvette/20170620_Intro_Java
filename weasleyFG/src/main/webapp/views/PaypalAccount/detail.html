@@ -1,0 +1,15 @@
+<header ng-switch on="$location.path().indexOf('/PaypalAccounts/new') > -1">
+    <h3 ng-switch-when="true">Create a new PaypalAccount</h3>
+    <h3 ng-switch-when="false">View or edit PaypalAccount</h3>
+</header>
+<form id="PaypalAccountForm" name="PaypalAccountForm" class="form-horizontal" role="form">
+    
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="savePaypalAccount" name="savePaypalAccount" class="btn btn-primary" ng-disabled="isClean() || PaypalAccountForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deletePaypalAccount" name="deletePaypalAccount" class="btn btn-danger" ng-show="paypalAccount.paypalAccountId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

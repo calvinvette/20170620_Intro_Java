@@ -21,6 +21,14 @@ public class WeasleyConsoleStore {
 	private static Connection conn = null;
 
 	public static Customer insertCustomerIntoDatabase(Customer c) {
+		if (conn == null) {
+			try {
+				conn = DriverManager.getConnection("jdbc:derby://localhost:1527/weasley;create=true", "calvin",
+						"password");
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 		if (conn != null) {
 			try {
 				Statement stmt = conn.createStatement();

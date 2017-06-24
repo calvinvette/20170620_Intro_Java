@@ -1,0 +1,65 @@
+<header ng-switch on="$location.path().indexOf('/Orders/new') > -1">
+    <h3 ng-switch-when="true">Create a new Orders</h3>
+    <h3 ng-switch-when="false">View or edit Orders</h3>
+</header>
+<form id="OrdersForm" name="OrdersForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': OrdersForm.customerId.$invalid}">
+        <label for="customerId" class="col-sm-2 control-label">Customer Id</label>
+        <div id="customerIdControls" class="col-sm-10">
+            <input id="customerId" name="customerId" type="number" class="form-control" ng-model="orders.customerId" placeholder="Enter the Orders Customer Id"></input>
+            <span class="help-block error" ng-show="OrdersForm.customerId.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': OrdersForm.orderDate.$invalid}">
+        <label for="orderDate" class="col-sm-2 control-label">Order Date</label>
+        <div id="orderDateControls" class="col-sm-10">
+            <date id="orderDate" name="orderDate" ng-model="orders.orderDate" placeholder="Enter the Orders Order Date"></date>
+            <span class="help-block error" ng-show="OrdersForm.orderDate.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="OrdersForm.orderDate.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': OrdersForm.shipMethod.$invalid}">
+        <label for="shipMethod" class="col-sm-2 control-label">Ship Method</label>
+        <div id="shipMethodControls" class="col-sm-10">
+            <input id="shipMethod" name="shipMethod" type="text" ng-maxlength="10" class="form-control" ng-model="orders.shipMethod" placeholder="Enter the Orders Ship Method"></input>
+            <span class="help-block error" ng-show="OrdersForm.shipMethod.$error.maxlength">maximum length is 10</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': OrdersForm.shipDate.$invalid}">
+        <label for="shipDate" class="col-sm-2 control-label">Ship Date</label>
+        <div id="shipDateControls" class="col-sm-10">
+            <date id="shipDate" name="shipDate" ng-model="orders.shipDate" placeholder="Enter the Orders Ship Date"></date>
+            <span class="help-block error" ng-show="OrdersForm.shipDate.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="OrdersForm.shipDate.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': OrdersForm.status.$invalid}">
+        <label for="status" class="col-sm-2 control-label">Status</label>
+        <div id="statusControls" class="col-sm-10">
+            <input id="status" name="status" type="text" ng-maxlength="10" class="form-control" ng-model="orders.status" placeholder="Enter the Orders Status"></input>
+            <span class="help-block error" ng-show="OrdersForm.status.$error.maxlength">maximum length is 10</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': OrdersForm.shipAddressId.$invalid}">
+        <label for="shipAddressId" class="col-sm-2 control-label">Ship Address Id</label>
+        <div id="shipAddressIdControls" class="col-sm-10">
+            <input id="shipAddressId" name="shipAddressId" type="number" class="form-control" ng-model="orders.shipAddressId" placeholder="Enter the Orders Ship Address Id"></input>
+            <span class="help-block error" ng-show="OrdersForm.shipAddressId.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveOrders" name="saveOrders" class="btn btn-primary" ng-disabled="isClean() || OrdersForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteOrders" name="deleteOrders" class="btn btn-danger" ng-show="orders.orderId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

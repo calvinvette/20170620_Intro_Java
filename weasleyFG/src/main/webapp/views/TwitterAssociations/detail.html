@@ -1,0 +1,31 @@
+<header ng-switch on="$location.path().indexOf('/TwitterAssociations/new') > -1">
+    <h3 ng-switch-when="true">Create a new TwitterAssociations</h3>
+    <h3 ng-switch-when="false">View or edit TwitterAssociations</h3>
+</header>
+<form id="TwitterAssociationsForm" name="TwitterAssociationsForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': TwitterAssociationsForm.twitterAccountId1.$invalid}">
+        <label for="twitterAccountId1" class="col-sm-2 control-label">Twitter Account Id 1</label>
+        <div id="twitterAccountId1Controls" class="col-sm-10">
+            <input id="twitterAccountId1" name="twitterAccountId1" type="number" class="form-control" ng-model="twitterAssociations.twitterAccountId1" placeholder="Enter the TwitterAssociations Twitter Account Id 1"></input>
+            <span class="help-block error" ng-show="TwitterAssociationsForm.twitterAccountId1.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': TwitterAssociationsForm.twitterAccountId2.$invalid}">
+        <label for="twitterAccountId2" class="col-sm-2 control-label">Twitter Account Id 2</label>
+        <div id="twitterAccountId2Controls" class="col-sm-10">
+            <input id="twitterAccountId2" name="twitterAccountId2" type="number" class="form-control" ng-model="twitterAssociations.twitterAccountId2" placeholder="Enter the TwitterAssociations Twitter Account Id 2"></input>
+            <span class="help-block error" ng-show="TwitterAssociationsForm.twitterAccountId2.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveTwitterAssociations" name="saveTwitterAssociations" class="btn btn-primary" ng-disabled="isClean() || TwitterAssociationsForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteTwitterAssociations" name="deleteTwitterAssociations" class="btn btn-danger" ng-show="twitterAssociations.associationId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

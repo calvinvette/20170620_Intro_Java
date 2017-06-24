@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="weasleyFG">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Weasley FG</title>
+    <link href="styles/bootstrap.css" rel="stylesheet" media="screen">
+    <link href="styles/bootstrap-theme.css" rel="stylesheet" media="screen">
+    <link href="styles/main.css" rel="stylesheet" media="screen">
+</head>
+<body>
+    <div id="wrap">
+    	
+    	<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="offcanvas">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+				    <a class="navbar-brand" href="#">Weasley FG</a>
+			    </div>
+			</div>
+    	</div>
+        
+        <div class="container">
+            <div class="row row-offcanvas row-offcanvas-left">
+                <!-- sidebar -->
+                <div class="col-xs-6 col-sm-3 well sidebar-offcanvas">
+                    <a href="app.html">
+                        <img class="hidden-xs img-responsive" src="img/forge-logo.png" alt="JBoss Forge"></img>
+                    </a>
+                    <nav class="sidebar-nav" ng-controller="NavController" role="navigation">
+                        <div id="sidebar-entries" class="list-group">
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Addresses')}" href="#/Addresses" data-toggle="offcanvas">Addresses</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('BankAccounts')}" href="#/BankAccounts" data-toggle="offcanvas">BankAccounts</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Countries')}" href="#/Countries" data-toggle="offcanvas">Countries</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('CreditCards')}" href="#/CreditCards" data-toggle="offcanvas">CreditCards</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('CreditCardPayments')}" href="#/CreditCardPayments" data-toggle="offcanvas">CreditCardPayments</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Customers')}" href="#/Customers" data-toggle="offcanvas">Customers</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('CustomerNotes')}" href="#/CustomerNotes" data-toggle="offcanvas">CustomerNotes</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('DeliveryTypes')}" href="#/DeliveryTypes" data-toggle="offcanvas">DeliveryTypes</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('EcheckPayments')}" href="#/EcheckPayments" data-toggle="offcanvas">EcheckPayments</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('EmailAddresses')}" href="#/EmailAddresses" data-toggle="offcanvas">EmailAddresses</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('FacebookAccounts')}" href="#/FacebookAccounts" data-toggle="offcanvas">FacebookAccounts</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('FacebookAssociations')}" href="#/FacebookAssociations" data-toggle="offcanvas">FacebookAssociations</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('HitCounts')}" href="#/HitCounts" data-toggle="offcanvas">HitCounts</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('LinkedInAccounts')}" href="#/LinkedInAccounts" data-toggle="offcanvas">LinkedInAccounts</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('LinkedInAssociations')}" href="#/LinkedInAssociations" data-toggle="offcanvas">LinkedInAssociations</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Notes')}" href="#/Notes" data-toggle="offcanvas">Notes</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('OrderItems')}" href="#/OrderItems" data-toggle="offcanvas">OrderItems</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('OrderNotes')}" href="#/OrderNotes" data-toggle="offcanvas">OrderNotes</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('OrderPayments')}" href="#/OrderPayments" data-toggle="offcanvas">OrderPayments</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('OrderStatuses')}" href="#/OrderStatuses" data-toggle="offcanvas">OrderStatuses</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Orders')}" href="#/Orders" data-toggle="offcanvas">Orders</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Payments')}" href="#/Payments" data-toggle="offcanvas">Payments</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('PaymentNotes')}" href="#/PaymentNotes" data-toggle="offcanvas">PaymentNotes</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('PaypalAccounts')}" href="#/PaypalAccounts" data-toggle="offcanvas">PaypalAccounts</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('PaypalPayments')}" href="#/PaypalPayments" data-toggle="offcanvas">PaypalPayments</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('Products')}" href="#/Products" data-toggle="offcanvas">Products</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('ProductNotes')}" href="#/ProductNotes" data-toggle="offcanvas">ProductNotes</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('ShoppingCarts')}" href="#/ShoppingCarts" data-toggle="offcanvas">ShoppingCarts</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('States')}" href="#/States" data-toggle="offcanvas">States</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('TwitterAccounts')}" href="#/TwitterAccounts" data-toggle="offcanvas">TwitterAccounts</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('TwitterAssociations')}" href="#/TwitterAssociations" data-toggle="offcanvas">TwitterAssociations</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('UserIds')}" href="#/UserIds" data-toggle="offcanvas">UserIds</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('ZipCodes')}" href="#/ZipCodes" data-toggle="offcanvas">ZipCodes</a>
+                        </div>
+                    </nav>
+                </div>
+                <!-- main area-->
+                <div class="col-sm-offset-1 col-xs-12 col-sm-8 well mainarea">
+                    <div ng-controller="FlashController" class="alert alert-dismissible" ng-class="'alert-' + flash.getMessage().cssClass" role="alert" ng-show="showAlert">
+                        <button type="button" class="close" ng-click="hideAlert()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {{flash.getMessage().text}}
+                    </div>
+                    <div id="main" ng-view>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer">
+        <div class="container">
+            <p>Powered by <a href="http://jboss.org/forge">Forge</a></p>
+            <p><a href="http://glyphicons.com">Glyphicons Free</a> licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
+        </div>
+    </div>
+    
+    <script src="scripts/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="scripts/vendor/jquery-2.1.1.js"></script>
+    <script src="scripts/vendor/bootstrap.js"></script>
+    <script src="scripts/vendor/angular.js"></script>
+    <script src="scripts/vendor/angular-route.js"></script>
+    <script src="scripts/vendor/angular-resource.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/offcanvas.js"></script>
+    <script src="scripts/directives/datepicker.js"></script>
+    <script src="scripts/directives/timepicker.js"></script>
+    <script src="scripts/directives/datetimepicker.js"></script>
+    <script src="scripts/filters/startFromFilter.js"></script>
+    <script src="scripts/filters/genericSearchFilter.js"></script>
+    <script src="scripts/services/flash.js"></script>
+    <script src="scripts/services/locationParser.js"></script>
+    <script src="scripts/controllers/flashController.js"></script>
+    <script src="scripts/services/AddressFactory.js"></script>
+    <script src="scripts/controllers/newAddressController.js"></script>
+    <script src="scripts/controllers/searchAddressController.js"></script>
+    <script src="scripts/controllers/editAddressController.js"></script>
+    <script src="scripts/services/BankAccountFactory.js"></script>
+    <script src="scripts/controllers/newBankAccountController.js"></script>
+    <script src="scripts/controllers/searchBankAccountController.js"></script>
+    <script src="scripts/controllers/editBankAccountController.js"></script>
+    <script src="scripts/services/CountryFactory.js"></script>
+    <script src="scripts/controllers/newCountryController.js"></script>
+    <script src="scripts/controllers/searchCountryController.js"></script>
+    <script src="scripts/controllers/editCountryController.js"></script>
+    <script src="scripts/services/CreditCardFactory.js"></script>
+    <script src="scripts/controllers/newCreditCardController.js"></script>
+    <script src="scripts/controllers/searchCreditCardController.js"></script>
+    <script src="scripts/controllers/editCreditCardController.js"></script>
+    <script src="scripts/services/CreditCardPaymentFactory.js"></script>
+    <script src="scripts/controllers/newCreditCardPaymentController.js"></script>
+    <script src="scripts/controllers/searchCreditCardPaymentController.js"></script>
+    <script src="scripts/controllers/editCreditCardPaymentController.js"></script>
+    <script src="scripts/services/CustomerFactory.js"></script>
+    <script src="scripts/controllers/newCustomerController.js"></script>
+    <script src="scripts/controllers/searchCustomerController.js"></script>
+    <script src="scripts/controllers/editCustomerController.js"></script>
+    <script src="scripts/services/CustomerNoteFactory.js"></script>
+    <script src="scripts/controllers/newCustomerNoteController.js"></script>
+    <script src="scripts/controllers/searchCustomerNoteController.js"></script>
+    <script src="scripts/controllers/editCustomerNoteController.js"></script>
+    <script src="scripts/services/DeliveryTypeFactory.js"></script>
+    <script src="scripts/controllers/newDeliveryTypeController.js"></script>
+    <script src="scripts/controllers/searchDeliveryTypeController.js"></script>
+    <script src="scripts/controllers/editDeliveryTypeController.js"></script>
+    <script src="scripts/services/EcheckPaymentFactory.js"></script>
+    <script src="scripts/controllers/newEcheckPaymentController.js"></script>
+    <script src="scripts/controllers/searchEcheckPaymentController.js"></script>
+    <script src="scripts/controllers/editEcheckPaymentController.js"></script>
+    <script src="scripts/services/EmailAddressFactory.js"></script>
+    <script src="scripts/controllers/newEmailAddressController.js"></script>
+    <script src="scripts/controllers/searchEmailAddressController.js"></script>
+    <script src="scripts/controllers/editEmailAddressController.js"></script>
+    <script src="scripts/services/FacebookAccountFactory.js"></script>
+    <script src="scripts/controllers/newFacebookAccountController.js"></script>
+    <script src="scripts/controllers/searchFacebookAccountController.js"></script>
+    <script src="scripts/controllers/editFacebookAccountController.js"></script>
+    <script src="scripts/services/FacebookAssociationsFactory.js"></script>
+    <script src="scripts/controllers/newFacebookAssociationsController.js"></script>
+    <script src="scripts/controllers/searchFacebookAssociationsController.js"></script>
+    <script src="scripts/controllers/editFacebookAssociationsController.js"></script>
+    <script src="scripts/services/HitCountFactory.js"></script>
+    <script src="scripts/controllers/newHitCountController.js"></script>
+    <script src="scripts/controllers/searchHitCountController.js"></script>
+    <script src="scripts/controllers/editHitCountController.js"></script>
+    <script src="scripts/services/LinkedInAccountFactory.js"></script>
+    <script src="scripts/controllers/newLinkedInAccountController.js"></script>
+    <script src="scripts/controllers/searchLinkedInAccountController.js"></script>
+    <script src="scripts/controllers/editLinkedInAccountController.js"></script>
+    <script src="scripts/services/LinkedInAssociationsFactory.js"></script>
+    <script src="scripts/controllers/newLinkedInAssociationsController.js"></script>
+    <script src="scripts/controllers/searchLinkedInAssociationsController.js"></script>
+    <script src="scripts/controllers/editLinkedInAssociationsController.js"></script>
+    <script src="scripts/services/NoteFactory.js"></script>
+    <script src="scripts/controllers/newNoteController.js"></script>
+    <script src="scripts/controllers/searchNoteController.js"></script>
+    <script src="scripts/controllers/editNoteController.js"></script>
+    <script src="scripts/services/OrderItemFactory.js"></script>
+    <script src="scripts/controllers/newOrderItemController.js"></script>
+    <script src="scripts/controllers/searchOrderItemController.js"></script>
+    <script src="scripts/controllers/editOrderItemController.js"></script>
+    <script src="scripts/services/OrderNoteFactory.js"></script>
+    <script src="scripts/controllers/newOrderNoteController.js"></script>
+    <script src="scripts/controllers/searchOrderNoteController.js"></script>
+    <script src="scripts/controllers/editOrderNoteController.js"></script>
+    <script src="scripts/services/OrderPaymentFactory.js"></script>
+    <script src="scripts/controllers/newOrderPaymentController.js"></script>
+    <script src="scripts/controllers/searchOrderPaymentController.js"></script>
+    <script src="scripts/controllers/editOrderPaymentController.js"></script>
+    <script src="scripts/services/OrderStatusFactory.js"></script>
+    <script src="scripts/controllers/newOrderStatusController.js"></script>
+    <script src="scripts/controllers/searchOrderStatusController.js"></script>
+    <script src="scripts/controllers/editOrderStatusController.js"></script>
+    <script src="scripts/services/OrdersFactory.js"></script>
+    <script src="scripts/controllers/newOrdersController.js"></script>
+    <script src="scripts/controllers/searchOrdersController.js"></script>
+    <script src="scripts/controllers/editOrdersController.js"></script>
+    <script src="scripts/services/PaymentFactory.js"></script>
+    <script src="scripts/controllers/newPaymentController.js"></script>
+    <script src="scripts/controllers/searchPaymentController.js"></script>
+    <script src="scripts/controllers/editPaymentController.js"></script>
+    <script src="scripts/services/PaymentNoteFactory.js"></script>
+    <script src="scripts/controllers/newPaymentNoteController.js"></script>
+    <script src="scripts/controllers/searchPaymentNoteController.js"></script>
+    <script src="scripts/controllers/editPaymentNoteController.js"></script>
+    <script src="scripts/services/PaypalAccountFactory.js"></script>
+    <script src="scripts/controllers/newPaypalAccountController.js"></script>
+    <script src="scripts/controllers/searchPaypalAccountController.js"></script>
+    <script src="scripts/controllers/editPaypalAccountController.js"></script>
+    <script src="scripts/services/PaypalPaymentFactory.js"></script>
+    <script src="scripts/controllers/newPaypalPaymentController.js"></script>
+    <script src="scripts/controllers/searchPaypalPaymentController.js"></script>
+    <script src="scripts/controllers/editPaypalPaymentController.js"></script>
+    <script src="scripts/services/ProductFactory.js"></script>
+    <script src="scripts/controllers/newProductController.js"></script>
+    <script src="scripts/controllers/searchProductController.js"></script>
+    <script src="scripts/controllers/editProductController.js"></script>
+    <script src="scripts/services/ProductNoteFactory.js"></script>
+    <script src="scripts/controllers/newProductNoteController.js"></script>
+    <script src="scripts/controllers/searchProductNoteController.js"></script>
+    <script src="scripts/controllers/editProductNoteController.js"></script>
+    <script src="scripts/services/ShoppingCartFactory.js"></script>
+    <script src="scripts/controllers/newShoppingCartController.js"></script>
+    <script src="scripts/controllers/searchShoppingCartController.js"></script>
+    <script src="scripts/controllers/editShoppingCartController.js"></script>
+    <script src="scripts/services/StateFactory.js"></script>
+    <script src="scripts/controllers/newStateController.js"></script>
+    <script src="scripts/controllers/searchStateController.js"></script>
+    <script src="scripts/controllers/editStateController.js"></script>
+    <script src="scripts/services/TwitterAccountFactory.js"></script>
+    <script src="scripts/controllers/newTwitterAccountController.js"></script>
+    <script src="scripts/controllers/searchTwitterAccountController.js"></script>
+    <script src="scripts/controllers/editTwitterAccountController.js"></script>
+    <script src="scripts/services/TwitterAssociationsFactory.js"></script>
+    <script src="scripts/controllers/newTwitterAssociationsController.js"></script>
+    <script src="scripts/controllers/searchTwitterAssociationsController.js"></script>
+    <script src="scripts/controllers/editTwitterAssociationsController.js"></script>
+    <script src="scripts/services/UserIdFactory.js"></script>
+    <script src="scripts/controllers/newUserIdController.js"></script>
+    <script src="scripts/controllers/searchUserIdController.js"></script>
+    <script src="scripts/controllers/editUserIdController.js"></script>
+    <script src="scripts/services/ZipCodeFactory.js"></script>
+    <script src="scripts/controllers/newZipCodeController.js"></script>
+    <script src="scripts/controllers/searchZipCodeController.js"></script>
+    <script src="scripts/controllers/editZipCodeController.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<header ng-switch on="$location.path().indexOf('/Payments/new') > -1">
+    <h3 ng-switch-when="true">Create a new Payment</h3>
+    <h3 ng-switch-when="false">View or edit Payment</h3>
+</header>
+<form id="PaymentForm" name="PaymentForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': PaymentForm.orderId.$invalid}">
+        <label for="orderId" class="col-sm-2 control-label">Order Id</label>
+        <div id="orderIdControls" class="col-sm-10">
+            <input id="orderId" name="orderId" type="number" required class="form-control" ng-model="payment.orderId" placeholder="Enter the Payment Order Id"></input>
+            <span class="help-block error" ng-show="PaymentForm.orderId.$error.required">required</span> 
+            <span class="help-block error" ng-show="PaymentForm.orderId.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PaymentForm.amount.$invalid}">
+        <label for="amount" class="col-sm-2 control-label">Amount</label>
+        <div id="amountControls" class="col-sm-10">
+            <input id="amount" name="amount" type="text" required class="form-control" ng-model="payment.amount" placeholder="Enter the Payment Amount"></input>
+            <span class="help-block error" ng-show="PaymentForm.amount.$error.required">required</span> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PaymentForm.paymentDate.$invalid}">
+        <label for="paymentDate" class="col-sm-2 control-label">Payment Date</label>
+        <div id="paymentDateControls" class="col-sm-10">
+            <date id="paymentDate" name="paymentDate" required ng-model="payment.paymentDate" placeholder="Enter the Payment Payment Date"></date>
+            <span class="help-block error" ng-show="PaymentForm.paymentDate.$error.required">required</span> 
+            <span class="help-block error" ng-show="PaymentForm.paymentDate.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="PaymentForm.paymentDate.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PaymentForm.dueDate.$invalid}">
+        <label for="dueDate" class="col-sm-2 control-label">Due Date</label>
+        <div id="dueDateControls" class="col-sm-10">
+            <date id="dueDate" name="dueDate" ng-model="payment.dueDate" placeholder="Enter the Payment Due Date"></date>
+            <span class="help-block error" ng-show="PaymentForm.dueDate.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="PaymentForm.dueDate.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': PaymentForm.paymentType.$invalid}">
+        <label for="paymentType" class="col-sm-2 control-label">Payment Type</label>
+        <div id="paymentTypeControls" class="col-sm-10">
+            <input id="paymentType" name="paymentType" type="text" ng-maxlength="1" class="form-control" ng-model="payment.paymentType" placeholder="Enter the Payment Payment Type"></input>
+            <span class="help-block error" ng-show="PaymentForm.paymentType.$error.maxlength">maximum length is 1</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="savePayment" name="savePayment" class="btn btn-primary" ng-disabled="isClean() || PaymentForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deletePayment" name="deletePayment" class="btn btn-danger" ng-show="payment.paymentId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

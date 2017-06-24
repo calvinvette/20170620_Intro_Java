@@ -1,0 +1,59 @@
+<header ng-switch on="$location.path().indexOf('/EcheckPayments/new') > -1">
+    <h3 ng-switch-when="true">Create a new EcheckPayment</h3>
+    <h3 ng-switch-when="false">View or edit EcheckPayment</h3>
+</header>
+<form id="EcheckPaymentForm" name="EcheckPaymentForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': EcheckPaymentForm.bankAccountId.$invalid}">
+        <label for="bankAccountId" class="col-sm-2 control-label">Bank Account Id</label>
+        <div id="bankAccountIdControls" class="col-sm-10">
+            <input id="bankAccountId" name="bankAccountId" type="number" required class="form-control" ng-model="echeckPayment.bankAccountId" placeholder="Enter the EcheckPayment Bank Account Id"></input>
+            <span class="help-block error" ng-show="EcheckPaymentForm.bankAccountId.$error.required">required</span> 
+            <span class="help-block error" ng-show="EcheckPaymentForm.bankAccountId.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EcheckPaymentForm.paymentId.$invalid}">
+        <label for="paymentId" class="col-sm-2 control-label">Payment Id</label>
+        <div id="paymentIdControls" class="col-sm-10">
+            <input id="paymentId" name="paymentId" type="number" required class="form-control" ng-model="echeckPayment.paymentId" placeholder="Enter the EcheckPayment Payment Id"></input>
+            <span class="help-block error" ng-show="EcheckPaymentForm.paymentId.$error.required">required</span> 
+            <span class="help-block error" ng-show="EcheckPaymentForm.paymentId.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EcheckPaymentForm.processDate.$invalid}">
+        <label for="processDate" class="col-sm-2 control-label">Process Date</label>
+        <div id="processDateControls" class="col-sm-10">
+            <date id="processDate" name="processDate" required ng-model="echeckPayment.processDate" placeholder="Enter the EcheckPayment Process Date"></date>
+            <span class="help-block error" ng-show="EcheckPaymentForm.processDate.$error.required">required</span> 
+            <span class="help-block error" ng-show="EcheckPaymentForm.processDate.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="EcheckPaymentForm.processDate.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EcheckPaymentForm.confirmationNumber.$invalid}">
+        <label for="confirmationNumber" class="col-sm-2 control-label">Confirmation Number</label>
+        <div id="confirmationNumberControls" class="col-sm-10">
+            <input id="confirmationNumber" name="confirmationNumber" type="number" class="form-control" ng-model="echeckPayment.confirmationNumber" placeholder="Enter the EcheckPayment Confirmation Number"></input>
+            <span class="help-block error" ng-show="EcheckPaymentForm.confirmationNumber.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EcheckPaymentForm.transactionId.$invalid}">
+        <label for="transactionId" class="col-sm-2 control-label">Transaction Id</label>
+        <div id="transactionIdControls" class="col-sm-10">
+            <input id="transactionId" name="transactionId" type="number" class="form-control" ng-model="echeckPayment.transactionId" placeholder="Enter the EcheckPayment Transaction Id"></input>
+            <span class="help-block error" ng-show="EcheckPaymentForm.transactionId.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveEcheckPayment" name="saveEcheckPayment" class="btn btn-primary" ng-disabled="isClean() || EcheckPaymentForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteEcheckPayment" name="deleteEcheckPayment" class="btn btn-danger" ng-show="echeckPayment.echeckPaymentId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

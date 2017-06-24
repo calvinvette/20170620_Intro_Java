@@ -1,0 +1,58 @@
+<header ng-switch on="$location.path().indexOf('/Notes/new') > -1">
+    <h3 ng-switch-when="true">Create a new Note</h3>
+    <h3 ng-switch-when="false">View or edit Note</h3>
+</header>
+<form id="NoteForm" name="NoteForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': NoteForm.noteCategory.$invalid}">
+        <label for="noteCategory" class="col-sm-2 control-label">Note Category</label>
+        <div id="noteCategoryControls" class="col-sm-10">
+            <input id="noteCategory" name="noteCategory" type="text" required ng-maxlength="20" class="form-control" ng-model="note.noteCategory" placeholder="Enter the Note Note Category"></input>
+            <span class="help-block error" ng-show="NoteForm.noteCategory.$error.required">required</span> 
+            <span class="help-block error" ng-show="NoteForm.noteCategory.$error.maxlength">maximum length is 20</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': NoteForm.noteText.$invalid}">
+        <label for="noteText" class="col-sm-2 control-label">Note Text</label>
+        <div id="noteTextControls" class="col-sm-10">
+            <input id="noteText" name="noteText" type="text" ng-maxlength="65535" class="form-control" ng-model="note.noteText" placeholder="Enter the Note Note Text"></input>
+            <span class="help-block error" ng-show="NoteForm.noteText.$error.maxlength">maximum length is 65535</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': NoteForm.exposure.$invalid}">
+        <label for="exposure" class="col-sm-2 control-label">Exposure</label>
+        <div id="exposureControls" class="col-sm-10">
+            <input id="exposure" name="exposure" type="text" ng-maxlength="10" class="form-control" ng-model="note.exposure" placeholder="Enter the Note Exposure"></input>
+            <span class="help-block error" ng-show="NoteForm.exposure.$error.maxlength">maximum length is 10</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': NoteForm.noteDate.$invalid}">
+        <label for="noteDate" class="col-sm-2 control-label">Note Date</label>
+        <div id="noteDateControls" class="col-sm-10">
+            <date id="noteDate" name="noteDate" ng-model="note.noteDate" placeholder="Enter the Note Note Date"></date>
+            <span class="help-block error" ng-show="NoteForm.noteDate.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="NoteForm.noteDate.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': NoteForm.validUntilDate.$invalid}">
+        <label for="validUntilDate" class="col-sm-2 control-label">Valid Until Date</label>
+        <div id="validUntilDateControls" class="col-sm-10">
+            <date id="validUntilDate" name="validUntilDate" ng-model="note.validUntilDate" placeholder="Enter the Note Valid Until Date"></date>
+            <span class="help-block error" ng-show="NoteForm.validUntilDate.$error.maxlength">maximum length is 10</span>
+            <span class="help-block error" ng-show="NoteForm.validUntilDate.$error.dateFormat">does not match format "yyyy-MM-dd" (e.g. 2013-12-01)</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveNote" name="saveNote" class="btn btn-primary" ng-disabled="isClean() || NoteForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteNote" name="deleteNote" class="btn btn-danger" ng-show="note.noteId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

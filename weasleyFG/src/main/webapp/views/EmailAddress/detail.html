@@ -1,0 +1,46 @@
+<header ng-switch on="$location.path().indexOf('/EmailAddresses/new') > -1">
+    <h3 ng-switch-when="true">Create a new EmailAddress</h3>
+    <h3 ng-switch-when="false">View or edit EmailAddress</h3>
+</header>
+<form id="EmailAddressForm" name="EmailAddressForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': EmailAddressForm.type.$invalid}">
+        <label for="type" class="col-sm-2 control-label">Type</label>
+        <div id="typeControls" class="col-sm-10">
+            <input id="type" name="type" type="text" ng-maxlength="25" class="form-control" ng-model="emailAddress.type" placeholder="Enter the EmailAddress Type"></input>
+            <span class="help-block error" ng-show="EmailAddressForm.type.$error.maxlength">maximum length is 25</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EmailAddressForm.address.$invalid}">
+        <label for="address" class="col-sm-2 control-label">Address</label>
+        <div id="addressControls" class="col-sm-10">
+            <input id="address" name="address" type="text" class="form-control" ng-model="emailAddress.address" placeholder="Enter the EmailAddress Address"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EmailAddressForm.primaryEmail.$invalid}">
+        <label for="primaryEmail" class="col-sm-2 control-label">Primary Email</label>
+        <div id="primaryEmailControls" class="col-sm-10">
+            <input id="primaryEmail" name="primaryEmail" type="text" ng-maxlength="1" class="form-control" ng-model="emailAddress.primaryEmail" placeholder="Enter the EmailAddress Primary Email"></input>
+            <span class="help-block error" ng-show="EmailAddressForm.primaryEmail.$error.maxlength">maximum length is 1</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': EmailAddressForm.owner.$invalid}">
+        <label for="owner" class="col-sm-2 control-label">Owner</label>
+        <div id="ownerControls" class="col-sm-10">
+            <input id="owner" name="owner" type="number" class="form-control" ng-model="emailAddress.owner" placeholder="Enter the EmailAddress Owner"></input>
+            <span class="help-block error" ng-show="EmailAddressForm.owner.$error.number">not a number</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveEmailAddress" name="saveEmailAddress" class="btn btn-primary" ng-disabled="isClean() || EmailAddressForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteEmailAddress" name="deleteEmailAddress" class="btn btn-danger" ng-show="emailAddress.emailAddressId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

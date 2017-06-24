@@ -1,0 +1,39 @@
+<header ng-switch on="$location.path().indexOf('/UserIds/new') > -1">
+    <h3 ng-switch-when="true">Create a new UserId</h3>
+    <h3 ng-switch-when="false">View or edit UserId</h3>
+</header>
+<form id="UserIdForm" name="UserIdForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': UserIdForm.userName.$invalid}">
+        <label for="userName" class="col-sm-2 control-label">User Name</label>
+        <div id="userNameControls" class="col-sm-10">
+            <input id="userName" name="userName" type="text" required class="form-control" ng-model="userId.userName" placeholder="Enter the UserId User Name"></input>
+            <span class="help-block error" ng-show="UserIdForm.userName.$error.required">required</span> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': UserIdForm.emailAddress.$invalid}">
+        <label for="emailAddress" class="col-sm-2 control-label">Email Address</label>
+        <div id="emailAddressControls" class="col-sm-10">
+            <input id="emailAddress" name="emailAddress" type="text" required class="form-control" ng-model="userId.emailAddress" placeholder="Enter the UserId Email Address"></input>
+            <span class="help-block error" ng-show="UserIdForm.emailAddress.$error.required">required</span> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': UserIdForm.password.$invalid}">
+        <label for="password" class="col-sm-2 control-label">Password</label>
+        <div id="passwordControls" class="col-sm-10">
+            <input id="password" name="password" type="text" required class="form-control" ng-model="userId.password" placeholder="Enter the UserId Password"></input>
+            <span class="help-block error" ng-show="UserIdForm.password.$error.required">required</span> 
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveUserId" name="saveUserId" class="btn btn-primary" ng-disabled="isClean() || UserIdForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteUserId" name="deleteUserId" class="btn btn-danger" ng-show="userId.userId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,93 @@
+<div class="form-horizontal">
+    <h3>Create a new DeliveryType</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/DeliveryTypes/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for DeliveryTypes</h3>
+    <form id="DeliveryTypeSearch" class="form-horizontal">
+        
+    <div class="form-group">
+        <label for="deliveryType" class="col-sm-2 control-label">Delivery Type</label>
+        <div class="col-sm-10">
+            <input id="deliveryType" name="deliveryType" class="form-control" type="text" ng-model="search.deliveryType" placeholder="Enter the DeliveryType Delivery Type"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="deliveryTypeText" class="col-sm-2 control-label">Delivery Type Text</label>
+        <div class="col-sm-10">
+            <input id="deliveryTypeText" name="deliveryTypeText" class="form-control" type="text" ng-model="search.deliveryTypeText" placeholder="Enter the DeliveryType Delivery Type Text"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="description" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-10">
+            <input id="description" name="description" class="form-control" type="text" ng-model="search.description" placeholder="Enter the DeliveryType Description"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="enabled" class="col-sm-2 control-label">Enabled</label>
+        <div class="col-sm-10">
+            <input id="enabled" name="enabled" class="form-control" type="text" ng-model="search.enabled" placeholder="Enter the DeliveryType Enabled"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="trackable" class="col-sm-2 control-label">Trackable</label>
+        <div class="col-sm-10">
+            <input id="trackable" name="trackable" class="form-control" type="text" ng-model="search.trackable" placeholder="Enter the DeliveryType Trackable"></input>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Delivery Type</th>
+                    <th>Delivery Type Text</th>
+                    <th>Description</th>
+                    <th>Enabled</th>
+                    <th>Trackable</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in filteredResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <td><a href="#/DeliveryTypes/edit/{{result.deliveryTypeId}}">{{result.deliveryType}}</a></td>
+                    <td><a href="#/DeliveryTypes/edit/{{result.deliveryTypeId}}">{{result.deliveryTypeText}}</a></td>
+                    <td><a href="#/DeliveryTypes/edit/{{result.deliveryTypeId}}">{{result.description}}</a></td>
+                    <td><a href="#/DeliveryTypes/edit/{{result.deliveryTypeId}}">{{result.enabled}}</a></td>
+                    <td><a href="#/DeliveryTypes/edit/{{result.deliveryTypeId}}">{{result.trackable}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

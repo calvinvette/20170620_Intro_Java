@@ -1,0 +1,33 @@
+<header ng-switch on="$location.path().indexOf('/Countries/new') > -1">
+    <h3 ng-switch-when="true">Create a new Country</h3>
+    <h3 ng-switch-when="false">View or edit Country</h3>
+</header>
+<form id="CountryForm" name="CountryForm" class="form-horizontal" role="form">
+    
+    <div class="form-group" ng-class="{'has-error': CountryForm.countryCode.$invalid}">
+        <label for="countryCode" class="col-sm-2 control-label">Country Code</label>
+        <div id="countryCodeControls" class="col-sm-10">
+            <input id="countryCode" name="countryCode" type="text" required ng-maxlength="2" class="form-control" ng-model="country.countryCode" placeholder="Enter the Country Country Code"></input>
+            <span class="help-block error" ng-show="CountryForm.countryCode.$error.required">required</span> 
+            <span class="help-block error" ng-show="CountryForm.countryCode.$error.maxlength">maximum length is 2</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': CountryForm.name.$invalid}">
+        <label for="name" class="col-sm-2 control-label">Name</label>
+        <div id="nameControls" class="col-sm-10">
+            <input id="name" name="name" type="text" required ng-maxlength="100" class="form-control" ng-model="country.name" placeholder="Enter the Country Name"></input>
+            <span class="help-block error" ng-show="CountryForm.name.$error.required">required</span> 
+            <span class="help-block error" ng-show="CountryForm.name.$error.maxlength">maximum length is 100</span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveCountry" name="saveCountry" class="btn btn-primary" ng-disabled="isClean() || CountryForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteCountry" name="deleteCountry" class="btn btn-danger" ng-show="country.countryId" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>
